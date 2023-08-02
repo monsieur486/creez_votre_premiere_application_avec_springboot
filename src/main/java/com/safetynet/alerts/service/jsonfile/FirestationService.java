@@ -1,4 +1,4 @@
-package com.safetynet.alerts.service;
+package com.safetynet.alerts.service.jsonfile;
 
 import com.safetynet.alerts.configuration.Constants;
 import com.safetynet.alerts.model.Firestation;

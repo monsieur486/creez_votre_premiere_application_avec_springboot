@@ -1,7 +1,8 @@
-package com.safetynet.alerts.service;
+package com.safetynet.alerts.service.jsonfile;
 
 import com.safetynet.alerts.configuration.Constants;
 import com.safetynet.alerts.model.Person;
+import com.safetynet.alerts.service.IPersonService;
 import com.safetynet.alerts.utils.ElementsFromJsonFile;
 import org.springframework.stereotype.Service;
 

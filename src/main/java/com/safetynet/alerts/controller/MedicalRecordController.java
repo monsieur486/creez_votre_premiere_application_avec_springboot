@@ -1,7 +1,7 @@
 package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.model.MedicalRecord;
-import com.safetynet.alerts.service.MedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +37,7 @@ public class MedicalRecordController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateProduct(@RequestBody MedicalRecord medicalrecord) {
+    public ResponseEntity<String> update(@RequestBody MedicalRecord medicalrecord) {
         if (Boolean.TRUE.equals(service.update(medicalrecord))) {
             String message = "medical record from " + medicalrecord.getFirstName() + " " + medicalrecord.getLastName() + " updated succesfully";
             log.info(message);
@@ -50,9 +50,9 @@ public class MedicalRecordController {
     }
 
     @DeleteMapping("")
-    public ResponseEntity<String> deleteProduct(@RequestParam String firstName, @RequestParam String lastName) {
+    public ResponseEntity<String> delete(@RequestParam String firstName, @RequestParam String lastName) {
         if (Boolean.TRUE.equals(service.delete(firstName, lastName))) {
-            String message = "medical record from " +firstName + " " + lastName + " deleted";
+            String message = "medical record from " + firstName + " " + lastName + " deleted";
             log.info(message);
             return ResponseEntity.status(HttpStatus.OK).body(message);
         } else {

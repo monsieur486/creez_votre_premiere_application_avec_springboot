@@ -1,10 +1,8 @@
 package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.model.Firestation;
-import com.safetynet.alerts.service.FirestationService;
+import com.safetynet.alerts.service.jsonfile.FirestationService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
