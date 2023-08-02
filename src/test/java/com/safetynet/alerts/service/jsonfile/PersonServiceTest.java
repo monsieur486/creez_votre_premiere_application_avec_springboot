@@ -11,7 +11,6 @@ class PersonServiceTest {
 
     PersonService classToTest = new PersonService();
 
-
     @Test
     void getAllPersons() {
         List<Person> personList = classToTest.getAllPersons();

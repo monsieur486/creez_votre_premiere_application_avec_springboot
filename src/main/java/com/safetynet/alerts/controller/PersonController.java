@@ -38,7 +38,7 @@ public class PersonController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateProduct(@RequestBody Person person) {
+    public ResponseEntity<String> updatePerson(@RequestBody Person person) {
         if (Boolean.TRUE.equals(service.update(person))) {
             String message = person.getFirstName() + " " + person.getLastName() + " updated succesfully";
             log.info(message);
@@ -51,7 +51,7 @@ public class PersonController {
     }
 
     @DeleteMapping("")
-    public ResponseEntity<String> deleteProduct(@RequestParam String firstName, @RequestParam String lastName) {
+    public ResponseEntity<String> deletePerson(@RequestParam String firstName, @RequestParam String lastName) {
         if (Boolean.TRUE.equals(service.delete(firstName, lastName))) {
             String message = firstName + " " + lastName + " deleted";
             log.info(message);
