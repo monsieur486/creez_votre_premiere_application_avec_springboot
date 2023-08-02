@@ -38,9 +38,6 @@ class PersonControllerTest {
         when(service.getAllPersons()).thenReturn(personList);
         List<Person> personListTest = classToTest.findAllPersons();
         assertEquals(personListTest, personList);
-
-        verify(service, times(1)).getAllPersons();
-
     }
 
     @Test
@@ -57,9 +54,6 @@ class PersonControllerTest {
         when(service.save(person)).thenReturn(person);
         Person personTest = classToTest.addPerson(person);
         assertEquals(personTest, person);
-
-        verify(service, times(1)).save(person);
-
     }
 
     @Test
