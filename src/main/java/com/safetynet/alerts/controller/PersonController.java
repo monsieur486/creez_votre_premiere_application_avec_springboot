@@ -1,7 +1,7 @@
 package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.PersonJsonService;
+import com.safetynet.alerts.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +14,9 @@ import java.util.List;
 @Slf4j
 public class PersonController {
 
-    private final PersonJsonService service;
+    private final PersonService service;
 
-    public PersonController(PersonJsonService service) {
+    public PersonController(PersonService service) {
         this.service = service;
     }
 
