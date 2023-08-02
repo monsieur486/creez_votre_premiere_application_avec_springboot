@@ -1,4 +1,4 @@
-package com.safetynet.alerts.controller;
+package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.service.jsonfile.MedicalRecordService;

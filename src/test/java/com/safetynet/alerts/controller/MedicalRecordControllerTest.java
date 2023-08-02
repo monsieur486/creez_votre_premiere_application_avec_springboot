@@ -1,5 +1,6 @@
 package com.safetynet.alerts.controller;
 
+import com.safetynet.alerts.controller.crud.MedicalRecordController;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
 import org.junit.jupiter.api.Test;

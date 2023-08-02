@@ -1,4 +1,4 @@
-package com.safetynet.alerts.controller;
+package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.jsonfile.PersonService;

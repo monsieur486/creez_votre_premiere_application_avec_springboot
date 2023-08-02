@@ -1,5 +1,6 @@
 package com.safetynet.alerts.controller;
 
+import com.safetynet.alerts.controller.crud.FirestationController;
 import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.service.jsonfile.FirestationService;
 import org.junit.jupiter.api.Test;
