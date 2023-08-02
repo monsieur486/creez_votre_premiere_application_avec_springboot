@@ -1,11 +1,12 @@
 package com.safetynet.alerts.model;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 
-public interface ApplicationElements {
-    ArrayList<Person> getPersons();
-
-    ArrayList<Firestation> getFirestations();
-
-    ArrayList<Medicalrecord> getMedicalrecords();
+@Data
+public class ApplicationElements implements IApplicationElements{
+    private ArrayList<Person> persons = new ArrayList<>();
+    private ArrayList<Firestation> firestations = new ArrayList<>();
+    private ArrayList<Medicalrecord> medicalrecords = new ArrayList<>();
 }

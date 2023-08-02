@@ -8,4 +8,6 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 public class Firestation {
+    private String address;
+    private Integer station;
 }
