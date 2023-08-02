@@ -32,10 +32,16 @@ class FirestationControllerTest {
                 1));
 
         when(service.getAllFirestations()).thenReturn(firestationList);
-        List<Firestation> firestationListTest = classToTest.findAllFirestations();
-        assertEquals(firestationListTest, firestationList);
+        ResponseEntity<Object> response = classToTest.findAllFirestations(null);
+        assertEquals(response.getStatusCodeValue(), 200);
 
         verify(service, times(1)).getAllFirestations();
+    }
+
+    @Test
+    void findAllFirestationsWithArgument() {
+        ResponseEntity<Object> response = classToTest.findAllFirestations(1);
+        assertEquals(200, response.getStatusCodeValue());
     }
 
     @Test
@@ -45,8 +51,9 @@ class FirestationControllerTest {
                 1);
 
         when(service.save(firestation)).thenReturn(firestation);
-        Firestation firestationTest = classToTest.addFirestation(firestation);
-        assertEquals(firestationTest, firestation);
+
+        ResponseEntity<Object> response = classToTest.addFirestation(firestation);
+        assertEquals(201, response.getStatusCodeValue());
 
         verify(service, times(1)).save(firestation);
     }
