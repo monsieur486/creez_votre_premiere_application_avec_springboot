@@ -1,14 +1,14 @@
 package com.safetynet.alerts.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-@Component
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class MedicalRecord {
     private String firstName;
     private String lastName;
