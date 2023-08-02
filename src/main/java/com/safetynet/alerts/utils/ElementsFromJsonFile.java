@@ -3,6 +3,7 @@ package com.safetynet.alerts.utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.dto.ApplicationElementsDto;
 import lombok.extern.slf4j.Slf4j;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -10,7 +11,8 @@ import java.nio.file.Paths;
 @Slf4j
 public class ElementsFromJsonFile {
 
-    private ElementsFromJsonFile(){}
+    private ElementsFromJsonFile() {
+    }
 
     public static ApplicationElementsDto getJsonData(String fileName) {
 

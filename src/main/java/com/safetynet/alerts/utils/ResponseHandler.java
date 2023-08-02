@@ -8,7 +8,8 @@ import java.util.Map;
 
 public class ResponseHandler {
 
-    private ResponseHandler() {}
+    private ResponseHandler() {
+    }
 
     public static ResponseEntity<Object> generateResponse(
             String message,
@@ -21,6 +22,6 @@ public class ResponseHandler {
         map.put("status", status.value());
         map.put(objectName, responseObj);
 
-        return new ResponseEntity<>(map,status);
+        return new ResponseEntity<>(map, status);
     }
 }

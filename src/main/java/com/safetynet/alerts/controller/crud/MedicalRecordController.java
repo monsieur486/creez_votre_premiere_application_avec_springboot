@@ -15,7 +15,7 @@ import java.util.List;
 public class MedicalRecordController {
     private final MedicalRecordService service;
 
-    public MedicalRecordController(MedicalRecordService service){
+    public MedicalRecordController(MedicalRecordService service) {
         this.service = service;
     }
 

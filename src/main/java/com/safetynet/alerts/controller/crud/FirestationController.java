@@ -2,7 +2,6 @@ package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.service.jsonfile.FirestationService;
-
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,10 +21,10 @@ public class FirestationController {
 
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> findAllFirestations(
-            @RequestParam (required = false) Integer stationNumber
+            @RequestParam(required = false) Integer stationNumber
     ) {
 
-        if(stationNumber != null) {
+        if (stationNumber != null) {
             String message = "Request firestation with station number: " + stationNumber;
             log.info(message);
             return ResponseHandler.generateResponse(

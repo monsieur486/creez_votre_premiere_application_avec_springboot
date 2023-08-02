@@ -6,8 +6,11 @@ import java.util.List;
 
 public interface IPersonService {
     List<Person> getAllPersons();
+
     Person save(Person person);
+
     Boolean update(Person person);
+
     Boolean delete(String firstName, String lastName);
 
 }

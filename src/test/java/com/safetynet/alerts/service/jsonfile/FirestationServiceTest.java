@@ -3,9 +3,9 @@ package com.safetynet.alerts.service.jsonfile;
 import com.safetynet.alerts.model.Firestation;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class FirestationServiceTest {
 
@@ -51,8 +51,8 @@ class FirestationServiceTest {
     @Test
     void delete() {
         Firestation firestation = new Firestation(
- "112 Steppes Pl",
-          4
+                "112 Steppes Pl",
+                4
         );
         boolean retour = classToTest.delete(firestation);
         assertTrue(retour);
