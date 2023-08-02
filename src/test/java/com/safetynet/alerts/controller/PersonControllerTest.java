@@ -37,8 +37,8 @@ class PersonControllerTest {
                 "boyd@gmail.com"));
 
         when(service.getAllPersons()).thenReturn(personList);
-        List<Person> personListTest = classToTest.findAllPersons();
-        assertEquals(personListTest, personList);
+        ResponseEntity<Object> response = classToTest.findAllPersons();
+        assertEquals(200, response.getStatusCodeValue());
     }
 
     @Test
@@ -53,8 +53,8 @@ class PersonControllerTest {
                 "boyd@gmail.com");
 
         when(service.save(person)).thenReturn(person);
-        Person personTest = classToTest.addPerson(person);
-        assertEquals(personTest, person);
+        ResponseEntity<Object> response = classToTest.addPerson(person);
+        assertEquals(201, response.getStatusCodeValue());
     }
 
     @Test
@@ -69,7 +69,7 @@ class PersonControllerTest {
                 "boyd@gmail.com");
 
         when(service.update(person)).thenReturn(true);
-        ResponseEntity<String> response = classToTest.updatePerson(person);
+        ResponseEntity<Object> response = classToTest.updatePerson(person);
         assertEquals(201, response.getStatusCodeValue());
     }
 
@@ -85,21 +85,21 @@ class PersonControllerTest {
                 "boyd@gmail.com");
 
         when(service.update(person)).thenReturn(false);
-        ResponseEntity<String> response = classToTest.updatePerson(person);
+        ResponseEntity<Object> response = classToTest.updatePerson(person);
         assertEquals(404, response.getStatusCodeValue());
     }
 
     @Test
     void deletePerson() {
         when(service.delete("xxx", "xxx")).thenReturn(true);
-        ResponseEntity<String> response = classToTest.deletePerson("xxx", "xxx");
+        ResponseEntity<Object> response = classToTest.deletePerson("xxx", "xxx");
         assertEquals(200, response.getStatusCodeValue());
     }
 
     @Test
     void deletePersonNotFound() {
         when(service.delete("xxx", "xxx")).thenReturn(false);
-        ResponseEntity<String> response = classToTest.deletePerson("xxx", "xxx");
+        ResponseEntity<Object> response = classToTest.deletePerson("xxx", "xxx");
         assertEquals(404, response.getStatusCodeValue());
     }
 }

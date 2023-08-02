@@ -2,8 +2,10 @@ package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,46 +22,76 @@ public class PersonController {
         this.service = service;
     }
 
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<Person> findAllPersons() {
-        log.info("Request all persons");
-        return service.getAllPersons();
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> findAllPersons() {
+        String message = "Request all persons";
+        log.info(message);
+        return ResponseHandler.generateResponse(
+                message,
+                HttpStatus.OK,
+                "persons",
+                service.getAllPersons()
+        );
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Person addPerson(@RequestBody Person person) {
-        log.info("Save personn firstname: "
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> addPerson(@RequestBody Person person) {
+        String message = "Add person firstname: "
                 + person.getFirstName()
-                + " lasname: "
-                + person.getLastName());
-        return service.save(person);
+                + " lastname: "
+                + person.getLastName();
+        log.info(message);
+        return ResponseHandler.generateResponse(
+                message,
+                HttpStatus.CREATED,
+                "person",
+                service.save(person)
+        );
     }
 
-    @PutMapping
-    public ResponseEntity<String> updatePerson(@RequestBody Person person) {
+    @PutMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> updatePerson(@RequestBody Person person) {
         if (Boolean.TRUE.equals(service.update(person))) {
             String message = person.getFirstName() + " " + person.getLastName() + " updated succesfully";
             log.info(message);
-            return ResponseEntity.status(HttpStatus.CREATED).body(message);
+            return ResponseHandler.generateResponse(
+                    message,
+                    HttpStatus.CREATED,
+                    "person",
+                    person
+            );
         } else {
             String message = "person not found";
             log.warn(message);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+            return ResponseHandler.generateResponse(
+                    message,
+                    HttpStatus.NOT_FOUND,
+                    "person",
+                    person
+            );
         }
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<String> deletePerson(@RequestParam String firstName, @RequestParam String lastName) {
+    @DeleteMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> deletePerson(@RequestParam String firstName, @RequestParam String lastName) {
         if (Boolean.TRUE.equals(service.delete(firstName, lastName))) {
             String message = firstName + " " + lastName + " deleted";
             log.info(message);
-            return ResponseEntity.status(HttpStatus.OK).body(message);
+            return ResponseHandler.generateResponse(
+                    message,
+                    HttpStatus.OK,
+                    "person",
+                    null
+            );
         } else {
             String message = "person not found";
             log.warn(message);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+            return ResponseHandler.generateResponse(
+                    message,
+                    HttpStatus.NOT_FOUND,
+                    "person",
+                    null
+            );
         }
     }
 }

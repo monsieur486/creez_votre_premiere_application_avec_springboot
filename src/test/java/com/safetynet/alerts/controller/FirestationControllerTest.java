@@ -33,7 +33,7 @@ class FirestationControllerTest {
 
         when(service.getAllFirestations()).thenReturn(firestationList);
         ResponseEntity<Object> response = classToTest.findAllFirestations(null);
-        assertEquals(response.getStatusCodeValue(), 200);
+        assertEquals(200, response.getStatusCodeValue());
 
         verify(service, times(1)).getAllFirestations();
     }
@@ -59,24 +59,24 @@ class FirestationControllerTest {
     }
 
     @Test
-    void updateProduct() {
+    void updateFirestation() {
         Firestation firestation = new Firestation(
                 "1 rue de Paris",
                 1);
 
         when(service.update(firestation)).thenReturn(true);
-        ResponseEntity<String> response = classToTest.updateProduct(firestation);
+        ResponseEntity<Object> response = classToTest.updateProduct(firestation);
         assertEquals(201, response.getStatusCodeValue());
     }
 
     @Test
-    void updateProductNotFound() {
+    void updateFirestationNotFound() {
         Firestation firestation = new Firestation(
                 "1 rue de Paris",
                 1);
 
         when(service.update(firestation)).thenReturn(false);
-        ResponseEntity<String> response = classToTest.updateProduct(firestation);
+        ResponseEntity<Object> response = classToTest.updateProduct(firestation);
         assertEquals(404, response.getStatusCodeValue());
     }
 
@@ -87,7 +87,7 @@ class FirestationControllerTest {
                 1);
 
         when(service.delete(firestation)).thenReturn(true);
-        ResponseEntity<String> response = classToTest.deleteFireStation(firestation);
+        ResponseEntity<Object> response = classToTest.deleteFireStation(firestation);
         assertEquals(200, response.getStatusCodeValue());
     }
 
@@ -98,7 +98,7 @@ class FirestationControllerTest {
                 1);
 
         when(service.delete(firestation)).thenReturn(false);
-        ResponseEntity<String> response = classToTest.deleteFireStation(firestation);
+        ResponseEntity<Object> response = classToTest.deleteFireStation(firestation);
         assertEquals(404, response.getStatusCodeValue());
     }
 }
