@@ -9,7 +9,7 @@ import java.util.ArrayList;
 @Component
 @Data
 @NoArgsConstructor
-public class Medicalrecord {
+public class MedicalRecord {
     private String firstName;
     private String lastName;
     private String birthdate;
