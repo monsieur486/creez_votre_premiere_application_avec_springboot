@@ -23,9 +23,9 @@ public class CommunityEmailController {
     public ResponseEntity<Object> getEndPoint(@RequestParam String city) {
 
         return ResponseHandler.generateResponse(
-                "communityEmail",
+                "communityEmails",
                 HttpStatus.OK,
-                "emailList",
+                "emailsList",
                 communityEmailEndPointService.getCommunityEmailByCity(city)
         );
     }
