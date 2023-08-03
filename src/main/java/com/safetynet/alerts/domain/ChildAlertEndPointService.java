@@ -34,7 +34,7 @@ public class ChildAlertEndPointService {
             for (Person person : persons) {
                 MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(person.getFirstName(), person.getLastName()).get(0);
 
-                if(medicalRecord != null) {
+                if (medicalRecord != null) {
                     int age = DateUtils.getAge(medicalRecord.getBirthdate());
                     String firstName = person.getFirstName();
                     String lastName = person.getLastName();

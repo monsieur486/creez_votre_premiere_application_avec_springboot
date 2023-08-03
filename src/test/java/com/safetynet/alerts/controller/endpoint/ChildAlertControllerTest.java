@@ -4,7 +4,7 @@ import com.safetynet.alerts.domain.ChildAlertEndPointService;
 import com.safetynet.alerts.dto.ChildAlertDto;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
