@@ -1,10 +1,9 @@
 package com.safetynet.alerts.controller.endpoint;
 
 import com.safetynet.alerts.domain.CommunityEmailEndPointService;
-import com.safetynet.alerts.service.jsonfile.PersonService;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

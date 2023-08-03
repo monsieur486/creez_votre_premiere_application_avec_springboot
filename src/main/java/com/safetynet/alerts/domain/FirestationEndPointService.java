@@ -41,7 +41,7 @@ public class FirestationEndPointService {
 
         List<Firestation> firestations = firestationService.getFirestationsByStation(stationNumber);
 
-        for(Firestation firestation : firestations) {
+        for (Firestation firestation : firestations) {
             List<Person> personsByAdress = personService.getPersonsByAddress(firestation.getAddress());
             if (personsByAdress != null) {
                 for (Person person : personsByAdress) {

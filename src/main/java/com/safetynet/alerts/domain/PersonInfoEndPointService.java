@@ -27,7 +27,7 @@ public class PersonInfoEndPointService {
         List<PersonInfoDto> personInfoDtoList = new ArrayList<>();
 
         List<Person> personList = personService.getPeronsByFirstNameAndLastName(firstName, lastName);
-        if(personList != null && !personList.isEmpty()) {
+        if (personList != null && !personList.isEmpty()) {
             for (Person person : personList) {
                 PersonInfoDto personInfoDto = new PersonInfoDto();
                 personInfoDto.setFirstName(person.getFirstName());
@@ -37,7 +37,7 @@ public class PersonInfoEndPointService {
                 personInfoDtoList.add(personInfoDto);
 
                 MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(firstName, lastName).get(0);
-                if(medicalRecord != null) {
+                if (medicalRecord != null) {
                     personInfoDto.setAge(DateUtils.getAge(medicalRecord.getBirthdate()));
                     personInfoDto.setMedications(medicalRecord.getMedications());
                     personInfoDto.setAllergies(medicalRecord.getAllergies());

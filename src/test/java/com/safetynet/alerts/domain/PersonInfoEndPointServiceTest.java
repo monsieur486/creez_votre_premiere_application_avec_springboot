@@ -1,16 +1,14 @@
 package com.safetynet.alerts.domain;
 
-import com.safetynet.alerts.dto.PersonInfoDto;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.FirestationService;
 import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
 import com.safetynet.alerts.service.jsonfile.PersonService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

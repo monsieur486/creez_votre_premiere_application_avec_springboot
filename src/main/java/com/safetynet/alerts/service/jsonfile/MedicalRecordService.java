@@ -3,7 +3,6 @@ package com.safetynet.alerts.service.jsonfile;
 import com.safetynet.alerts.configuration.Constants;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.service.IMedicalRecordService;
-import com.safetynet.alerts.utils.DateUtils;
 import com.safetynet.alerts.utils.ElementsFromJsonFile;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.safetynet.alerts.controller.crud;
 
-import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.domain.FirestationEndPointService;
+import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.service.jsonfile.FirestationService;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
