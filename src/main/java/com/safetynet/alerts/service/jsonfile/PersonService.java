@@ -89,4 +89,11 @@ public class PersonService implements IPersonService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Person> getPersonsByCity(String city) {
+        return persons.stream()
+                .filter(person -> Objects.equals(person.getCity(), city))
+                .collect(Collectors.toList());
+    }
+
 }
