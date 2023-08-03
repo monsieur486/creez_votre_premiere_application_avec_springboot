@@ -37,4 +37,13 @@ public class DateUtils {
         LocalDate date1 = LocalDate.now().minusYears( 1);
         return date1.format(formatter);
     }
+
+    public static int getAge(String birthdate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate date1 = LocalDate.parse(birthdate, formatter);
+        LocalDate date2 = LocalDate.now();
+        TemporalUnit unit = ChronoUnit.YEARS;
+        long years = unit.between(date1, date2);
+        return (int) years;
+    }
 }

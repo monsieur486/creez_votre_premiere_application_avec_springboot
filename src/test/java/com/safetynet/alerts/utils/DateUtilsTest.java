@@ -9,7 +9,22 @@ class DateUtilsTest {
 
     @Test
     void isChild() {
-        assertTrue(DateUtils.isChild("01/01/2010"));
-        assertFalse(DateUtils.isChild("01/01/2000"));
+        assertTrue(DateUtils.isChild(DateUtils.getChildBirthdate()));
+        assertFalse(DateUtils.isChild(DateUtils.getAdultBirthdate()));
+    }
+
+    @Test
+    void getAdultBirthdate() {
+        assertFalse(DateUtils.isChild(DateUtils.getAdultBirthdate()));
+    }
+
+    @Test
+    void getChildBirthdate() {
+        assertTrue(DateUtils.isChild(DateUtils.getChildBirthdate()));
+    }
+
+    @Test
+    void getAge() {
+        assertEquals(1, DateUtils.getAge(DateUtils.getChildBirthdate()));
     }
 }
