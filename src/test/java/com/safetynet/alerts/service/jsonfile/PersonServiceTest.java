@@ -74,4 +74,10 @@ class PersonServiceTest {
         boolean retour = classToTest.delete("xxx", "xxx");
         assertFalse(retour);
     }
+
+    @Test
+    void getPersonsByAddress() {
+        List<Person> personList = classToTest.getPersonsByAddress("1 place de Paris");
+        assertNotNull(personList);
+    }
 }

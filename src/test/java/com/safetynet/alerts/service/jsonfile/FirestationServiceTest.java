@@ -67,4 +67,16 @@ class FirestationServiceTest {
         boolean retour = classToTest.delete(firestation);
         assertFalse(retour);
     }
+
+    @Test
+    void getFirestationsByStation() {
+        List<Firestation> result = classToTest.getFirestationsByStation(1);
+        assertNotNull(result);
+    }
+
+    @Test
+    void getFirestationsByAddress() {
+        List<Firestation> result = classToTest.getFirestationsByAddress("1509 Culver St");
+        assertNotNull(result);
+    }
 }

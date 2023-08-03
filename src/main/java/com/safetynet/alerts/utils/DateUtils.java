@@ -24,4 +24,17 @@ public class DateUtils {
             return false;
         }
     }
+
+    public static String getAdultBirthdate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        int maxAge = Constants.MAX_AGE_CHILD + 1;
+        LocalDate date1 = LocalDate.now().minusYears(maxAge);
+        return date1.format(formatter);
+    }
+
+    public static String getChildBirthdate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate date1 = LocalDate.now().minusYears( 1);
+        return date1.format(formatter);
+    }
 }

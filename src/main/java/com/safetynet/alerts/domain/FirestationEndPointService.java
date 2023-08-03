@@ -43,15 +43,17 @@ public class FirestationEndPointService {
 
         for(Firestation firestation : firestations) {
             List<Person> personsByAdress = personService.getPersonsByAddress(firestation.getAddress());
-            for(Person person : personsByAdress) {
-                people.add(new PersonCoveredDto(person));
-                MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(
-                        person.getFirstName(), person.getLastName()).get(0);
-                if(medicalRecord != null) {
-                    if(DateUtils.isChild(medicalRecord.getBirthdate())) {
-                        children++;
-                    } else {
-                        adults++;
+            if (personsByAdress != null) {
+                for (Person person : personsByAdress) {
+                    people.add(new PersonCoveredDto(person));
+                    MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(
+                            person.getFirstName(), person.getLastName()).get(0);
+                    if (medicalRecord != null) {
+                        if (DateUtils.isChild(medicalRecord.getBirthdate())) {
+                            children++;
+                        } else {
+                            adults++;
+                        }
                     }
                 }
             }

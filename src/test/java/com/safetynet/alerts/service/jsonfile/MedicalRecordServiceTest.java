@@ -72,4 +72,10 @@ class MedicalRecordServiceTest {
         boolean retour = classToTest.delete("xxx", "xxx");
         assertFalse(retour);
     }
+
+    @Test
+    void getMedicalrecordsByFirstNameAndLastName() {
+        List<MedicalRecord> medicalRecords = classToTest.getMedicalrecordsByFirstNameAndLastName("John", "Boyd");
+        assertNotNull(medicalRecords);
+    }
 }
