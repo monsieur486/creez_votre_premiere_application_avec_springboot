@@ -64,7 +64,7 @@ class MedicalRecordControllerTest {
 
         when(medicalRecordService.update(medicalRecord)).thenReturn(true);
         ResponseEntity<Object> medicalRecordResponseEntity = classToTest.update(medicalRecord);
-        assertEquals(200, medicalRecordResponseEntity.getStatusCodeValue());
+        assertEquals(201, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
     @Test
