@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -36,8 +35,8 @@ class MedicalRecordControllerTest {
                 new ArrayList<>()));
 
         when(medicalRecordService.getAllMedicalrecords()).thenReturn(medicalRecordList);
-        List<MedicalRecord> medicalRecordListTest = classToTest.findAllMedicalrecords();
-        assertEquals(medicalRecordListTest, medicalRecordList);
+        ResponseEntity<Object> response = classToTest.findAllMedicalrecords();
+        assertEquals(200, response.getStatusCodeValue());
     }
 
     @Test
@@ -50,8 +49,8 @@ class MedicalRecordControllerTest {
                 new ArrayList<>());
 
         when(medicalRecordService.save(medicalRecord)).thenReturn(medicalRecord);
-        MedicalRecord medicalRecordTest = classToTest.addMedicalrecord(medicalRecord);
-        assertEquals(medicalRecordTest, medicalRecord);
+        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.addMedicalrecord(medicalRecord);
+        assertEquals(201, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
     @Test
@@ -64,9 +63,8 @@ class MedicalRecordControllerTest {
                 new ArrayList<>());
 
         when(medicalRecordService.update(medicalRecord)).thenReturn(true);
-        ResponseEntity<String> medicalRecordResponseEntity = classToTest.update(medicalRecord);
-        assertEquals(201, medicalRecordResponseEntity.getStatusCodeValue());
-
+        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.update(medicalRecord);
+        assertEquals(200, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
     @Test
@@ -79,22 +77,21 @@ class MedicalRecordControllerTest {
                 new ArrayList<>());
 
         when(medicalRecordService.update(medicalRecord)).thenReturn(false);
-        ResponseEntity<String> medicalRecordResponseEntity = classToTest.update(medicalRecord);
+        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.update(medicalRecord);
         assertEquals(404, medicalRecordResponseEntity.getStatusCodeValue());
-
     }
 
     @Test
     void delete() {
         when(medicalRecordService.delete("John", "Boyd")).thenReturn(true);
-        ResponseEntity<String> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
+        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
         assertEquals(200, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
     @Test
     void deleteNotFound() {
         when(medicalRecordService.delete("John", "Boyd")).thenReturn(false);
-        ResponseEntity<String> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
+        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
         assertEquals(404, medicalRecordResponseEntity.getStatusCodeValue());
     }
 }
