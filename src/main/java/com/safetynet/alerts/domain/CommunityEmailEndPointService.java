@@ -4,7 +4,6 @@ import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.jsonfile.PersonService;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;

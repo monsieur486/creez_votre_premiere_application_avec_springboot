@@ -86,4 +86,10 @@ class PersonServiceTest {
         List<Person> personList = classToTest.getPersonsByCity("Strasbourg");
         assertNotNull(personList);
     }
+
+    @Test
+    void getPeronsByFirstNameAndLastName() {
+        List<Person> personList = classToTest.getPeronsByFirstNameAndLastName("John", "Boyd");
+        assertNotNull(personList);
+    }
 }

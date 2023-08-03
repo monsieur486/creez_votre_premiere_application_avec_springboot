@@ -96,4 +96,12 @@ public class PersonService implements IPersonService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Person> getPeronsByFirstNameAndLastName(String firstName, String lastName) {
+        return persons.stream()
+                .filter(person -> Objects.equals(person.getFirstName(), firstName)
+                        && Objects.equals(person.getLastName(), lastName))
+                .collect(Collectors.toList());
+    }
+
 }

@@ -17,4 +17,6 @@ public interface IPersonService {
 
     List<Person> getPersonsByCity(String city);
 
+    List<Person> getPeronsByFirstNameAndLastName(String firstName, String lastName);
+
 }
