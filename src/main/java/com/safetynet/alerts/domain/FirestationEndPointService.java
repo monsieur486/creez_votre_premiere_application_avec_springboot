@@ -1,4 +1,4 @@
-package com.safetynet.alerts.service.endpoint;
+package com.safetynet.alerts.domain;
 
 import com.safetynet.alerts.dto.PeopleCoveredDto;
 import com.safetynet.alerts.dto.PersonCoveredDto;
