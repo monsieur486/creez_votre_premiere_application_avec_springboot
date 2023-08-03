@@ -1,5 +1,6 @@
 package com.safetynet.alerts.controller.endpoint;
 
+import com.safetynet.alerts.domain.CommunityEmailEndPointService;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -12,9 +13,20 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class CommunityEmailController {
 
+    private final CommunityEmailEndPointService communityEmailEndPointService;
+
+    public CommunityEmailController(CommunityEmailEndPointService communityEmailEndPointService) {
+        this.communityEmailEndPointService = communityEmailEndPointService;
+    }
+
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getEndPoint(@RequestParam String city) {
 
-        return ResponseHandler.generateResponse("communityEmail", HttpStatus.OK, "communityemail", city);
+        return ResponseHandler.generateResponse(
+                "communityEmail",
+                HttpStatus.OK,
+                "emailList",
+                communityEmailEndPointService.getCommunityEmailByCity(city)
+        );
     }
 }

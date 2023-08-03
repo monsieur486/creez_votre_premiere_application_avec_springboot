@@ -25,7 +25,7 @@ public class PhoneAlertController {
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getEndPoint(@RequestParam Integer firestation) {
 
-        return ResponseHandler.generateResponse("phoneAlert",
+        return ResponseHandler.generateResponse("Phone numbers for firestation " + firestation,
                 HttpStatus.OK,
                 "phoneNumbers",
                 phoneAlertEndPointService.getPhoneAlertByStationNumber(firestation));

@@ -7,6 +7,7 @@ import com.safetynet.alerts.service.jsonfile.PersonService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -39,7 +40,10 @@ public class PhoneAlertEndPointService {
             }
         }
 
-        return new ArrayList<>(phoneAlert);
+        List<String> result = new java.util.ArrayList<>(List.copyOf(phoneAlert));
+        Collections.sort(result);
+
+        return result;
     }
 
 }
