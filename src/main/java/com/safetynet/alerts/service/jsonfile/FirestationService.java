@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class FirestationService implements IFirestationService {
@@ -65,5 +66,19 @@ public class FirestationService implements IFirestationService {
         }
 
         return flag;
+    }
+
+    @Override
+    public List<Firestation> getFirestationsByStation(Integer station) {
+        return firestations.stream()
+                .filter(firestation -> Objects.equals(firestation.getStation(), station))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Firestation> getFirestationsByAddress(String address) {
+        return firestations.stream()
+                .filter(firestation -> Objects.equals(firestation.getAddress(), address))
+                .collect(Collectors.toList());
     }
 }

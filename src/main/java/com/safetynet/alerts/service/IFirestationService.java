@@ -13,4 +13,8 @@ public interface IFirestationService {
 
     Boolean delete(Firestation firestation);
 
+    List<Firestation> getFirestationsByStation(Integer station);
+
+    List<Firestation> getFirestationsByAddress(String address);
+
 }

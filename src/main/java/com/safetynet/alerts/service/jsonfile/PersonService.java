@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService implements IPersonService {
@@ -80,4 +81,12 @@ public class PersonService implements IPersonService {
         }
         return flag;
     }
+
+    @Override
+    public List<Person> getPersonsByAddress(String address) {
+        return persons.stream()
+                .filter(person -> Objects.equals(person.getAddress(), address))
+                .collect(Collectors.toList());
+    }
+
 }

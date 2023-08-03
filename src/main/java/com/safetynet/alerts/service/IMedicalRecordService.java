@@ -12,4 +12,7 @@ public interface IMedicalRecordService {
     Boolean update(MedicalRecord medicalRecord);
 
     Boolean delete(String firstName, String lastName);
+
+    List<MedicalRecord> getMedicalrecordsByFirstNameAndLastName(String firstName, String lastName);
+
 }

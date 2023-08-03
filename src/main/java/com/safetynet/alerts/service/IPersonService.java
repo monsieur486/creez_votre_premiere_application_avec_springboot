@@ -13,4 +13,6 @@ public interface IPersonService {
 
     Boolean delete(String firstName, String lastName);
 
+    List<Person> getPersonsByAddress(String address);
+
 }

@@ -1,6 +1,7 @@
 package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.model.Firestation;
+import com.safetynet.alerts.service.endpoint.FirestationEndPointService;
 import com.safetynet.alerts.service.jsonfile.FirestationService;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.*;
 public class FirestationController {
     private final FirestationService service;
 
-    public FirestationController(FirestationService service) {
+    private final FirestationEndPointService firestationEndPointService;
+
+    public FirestationController(FirestationService service, FirestationEndPointService firestationEndPointService) {
         this.service = service;
+        this.firestationEndPointService = firestationEndPointService;
     }
 
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -25,13 +29,13 @@ public class FirestationController {
     ) {
 
         if (stationNumber != null) {
-            String message = "Request firestation with station number: " + stationNumber;
+            String message = "Request people covered by firestation " + stationNumber;
             log.info(message);
             return ResponseHandler.generateResponse(
                     message,
                     HttpStatus.OK,
-                    "stationNumber",
-                    stationNumber
+                    "data",
+                    firestationEndPointService.getPeopleCoveredByStationNumber(stationNumber)
             );
         } else {
             String message = "Request all firestations";
