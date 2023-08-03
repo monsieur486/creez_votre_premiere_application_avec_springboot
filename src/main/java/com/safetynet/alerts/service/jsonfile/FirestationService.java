@@ -2,6 +2,7 @@ package com.safetynet.alerts.service.jsonfile;
 
 import com.safetynet.alerts.configuration.Constants;
 import com.safetynet.alerts.model.Firestation;
+import com.safetynet.alerts.service.IFirestationService;
 import com.safetynet.alerts.utils.ElementsFromJsonFile;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class FirestationService {
+public class FirestationService implements IFirestationService {
     private final List<Firestation> firestations;
 
     public FirestationService() {
