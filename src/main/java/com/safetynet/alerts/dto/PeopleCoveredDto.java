@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PeopleCoveredDto {
-    private List<Person> persons;
+    private List<PersonCoveredDto> persons;
     private int adults;
     private int children;
 }

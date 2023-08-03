@@ -1,6 +1,7 @@
 package com.safetynet.alerts.service.endpoint;
 
 import com.safetynet.alerts.dto.PeopleCoveredDto;
+import com.safetynet.alerts.dto.PersonCoveredDto;
 import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
@@ -36,14 +37,14 @@ public class FirestationEndPointService {
         PeopleCoveredDto peopleCoveredDto = new PeopleCoveredDto();
         int adults = 0;
         int children = 0;
-        List<Person> people = new ArrayList<>();
+        List<PersonCoveredDto> people = new ArrayList<>();
 
         List<Firestation> firestations = firestationService.getFirestationsByStation(stationNumber);
 
         for(Firestation firestation : firestations) {
             List<Person> personsByAdress = personService.getPersonsByAddress(firestation.getAddress());
-            people.addAll(personsByAdress);
             for(Person person : personsByAdress) {
+                people.add(new PersonCoveredDto(person));
                 MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(
                         person.getFirstName(), person.getLastName()).get(0);
                 if(medicalRecord != null) {
