@@ -31,17 +31,17 @@ public class FireEndPointService {
     public FireDto getPersonListByAddress(String address) {
         FireDto result = new FireDto();
         Firestation firestation = firestationService.getFirestationsByAddress(address).get(0);
-        if(firestation != null) {
+        if (firestation != null) {
             result.setStationNumber(firestation.getStation());
         }
 
         List<Person> persons = personService.getPersonsByAddress(address);
-        if(persons != null) {
+        if (persons != null) {
             for (Person person : persons) {
                 MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(
                         person.getFirstName(), person.getLastName()).get(0);
 
-                if(medicalRecord != null) {
+                if (medicalRecord != null) {
                     result.addPerson(new FirePersonDto(person, medicalRecord));
                 }
             }

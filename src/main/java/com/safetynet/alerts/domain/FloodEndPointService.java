@@ -30,10 +30,10 @@ public class FloodEndPointService {
 
     public List<FloodDto> getPersonListByStationNumberList(String stationNumbers) {
         List<FloodDto> result = new ArrayList<>();
-        for(Integer stationNumber : stationNumberList(stationNumbers)) {
+        for (Integer stationNumber : stationNumberList(stationNumbers)) {
             List<Firestation> firestations = firestationService.getFirestationsByStation(stationNumber);
-            if(firestations != null && !firestations.isEmpty()) {
-                for(Firestation firestation : firestations) {
+            if (firestations != null && !firestations.isEmpty()) {
+                for (Firestation firestation : firestations) {
                     FloodDto floodDto = new FloodDto();
 
                     String address = firestation.getAddress();
@@ -43,13 +43,13 @@ public class FloodEndPointService {
                     floodDto.setStationNumber(station);
 
                     List<Person> persons = personService.getPersonsByAddress(address);
-                    if(persons != null) {
+                    if (persons != null) {
                         for (Person person : persons) {
 
                             MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(
                                     person.getFirstName(), person.getLastName()).get(0);
 
-                            if(medicalRecord != null) {
+                            if (medicalRecord != null) {
                                 FirePersonDto personDto = new FirePersonDto(person, medicalRecord);
                                 floodDto.addPerson(personDto);
                             }
@@ -68,7 +68,7 @@ public class FloodEndPointService {
 
     private List<Integer> stationNumberList(String stationNumbers) {
         List<Integer> stationNumberList = new ArrayList<>();
-        if(stationNumbers != null) {
+        if (stationNumbers != null) {
             String[] stationNumberArray = stationNumbers.split(",");
             for (String stationNumber : stationNumberArray) {
                 stationNumberList.add(Integer.parseInt(stationNumber));
