@@ -1,5 +1,6 @@
 package com.safetynet.alerts.controller.endpoint;
 
+import com.safetynet.alerts.domain.FloodEndPointService;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class FloodController {
 
+    private final FloodEndPointService floodEndPointService;
+
+    public FloodController(FloodEndPointService floodEndPointService) {
+        this.floodEndPointService = floodEndPointService;
+    }
+
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getEndPoint(@RequestParam String stations) {
-        return ResponseHandler.generateResponse("flood", HttpStatus.OK, "flood", stations);
+        return ResponseHandler.generateResponse(
+                "List of addresses served by the fire station",
+                HttpStatus.OK,
+                "adressList",
+                floodEndPointService.getPersonListByStationNumberList(stations)
+        );
     }
 }
