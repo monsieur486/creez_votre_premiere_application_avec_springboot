@@ -9,13 +9,13 @@ import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
 import com.safetynet.alerts.service.jsonfile.PersonService;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import java.util.List;
 
 class FireControllerTest {
 
