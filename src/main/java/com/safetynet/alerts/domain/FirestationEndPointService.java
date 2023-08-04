@@ -5,9 +5,9 @@ import com.safetynet.alerts.dto.PersonCoveredDto;
 import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.FirestationService;
-import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFileFirestationService;
+import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import com.safetynet.alerts.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
@@ -17,20 +17,20 @@ import java.util.List;
 @Service
 public class FirestationEndPointService {
 
-    private final PersonService personService;
+    private final JsonFilePersonService jsonFilePersonService;
 
-    private final FirestationService firestationService;
+    private final JsonFileFirestationService jsonFileFirestationService;
 
-    private final MedicalRecordService medicalRecordService;
+    private final JsonFileMedicalRecordService jsonFileMedicalRecordService;
 
     public FirestationEndPointService(
-            FirestationService firestationService,
-            PersonService personService,
-            MedicalRecordService medicalRecordService
+            JsonFileFirestationService jsonFileFirestationService,
+            JsonFilePersonService jsonFilePersonService,
+            JsonFileMedicalRecordService jsonFileMedicalRecordService
     ) {
-        this.firestationService = firestationService;
-        this.personService = personService;
-        this.medicalRecordService = medicalRecordService;
+        this.jsonFileFirestationService = jsonFileFirestationService;
+        this.jsonFilePersonService = jsonFilePersonService;
+        this.jsonFileMedicalRecordService = jsonFileMedicalRecordService;
     }
 
     public PeopleCoveredDto getPeopleCoveredByStationNumber(Integer stationNumber) {
@@ -39,14 +39,14 @@ public class FirestationEndPointService {
         int children = 0;
         List<PersonCoveredDto> people = new ArrayList<>();
 
-        List<Firestation> firestations = firestationService.getFirestationsByStation(stationNumber);
+        List<Firestation> firestations = jsonFileFirestationService.getFirestationsByStation(stationNumber);
 
         for (Firestation firestation : firestations) {
-            List<Person> personsByAdress = personService.getPersonsByAddress(firestation.getAddress());
+            List<Person> personsByAdress = jsonFilePersonService.getPersonsByAddress(firestation.getAddress());
             if (personsByAdress != null) {
                 for (Person person : personsByAdress) {
                     people.add(new PersonCoveredDto(person));
-                    MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(
+                    MedicalRecord medicalRecord = jsonFileMedicalRecordService.getMedicalrecordsByFirstNameAndLastName(
                             person.getFirstName(), person.getLastName()).get(0);
                     if (medicalRecord != null) {
                         if (DateUtils.isChild(medicalRecord.getBirthdate())) {

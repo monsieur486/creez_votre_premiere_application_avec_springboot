@@ -2,8 +2,8 @@ package com.safetynet.alerts.domain;
 
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,11 +14,11 @@ import static org.mockito.Mockito.when;
 
 class PersonInfoEndPointServiceTest {
 
-    PersonService personService = mock(PersonService.class);
+    JsonFilePersonService jsonFilePersonService = mock(JsonFilePersonService.class);
 
-    MedicalRecordService medicalRecordService = mock(MedicalRecordService.class);
+    JsonFileMedicalRecordService jsonFileMedicalRecordService = mock(JsonFileMedicalRecordService.class);
 
-    PersonInfoEndPointService classToTest = new PersonInfoEndPointService(personService, medicalRecordService);
+    PersonInfoEndPointService classToTest = new PersonInfoEndPointService(jsonFilePersonService, jsonFileMedicalRecordService);
 
 
     @Test
@@ -29,8 +29,8 @@ class PersonInfoEndPointServiceTest {
         List<Person> personList = List.of(person);
         List<MedicalRecord> medicalRecordList = List.of(medicalRecord);
 
-        when(personService.getPeronsByFirstNameAndLastName("John", "Boyd")).thenReturn(personList);
-        when(medicalRecordService.getMedicalrecordsByFirstNameAndLastName("John", "Boyd")).thenReturn(medicalRecordList);
+        when(jsonFilePersonService.getPeronsByFirstNameAndLastName("John", "Boyd")).thenReturn(personList);
+        when(jsonFileMedicalRecordService.getMedicalrecordsByFirstNameAndLastName("John", "Boyd")).thenReturn(medicalRecordList);
         assertNotNull(classToTest.getPersonInfo("John", "Boyd"));
     }
 }

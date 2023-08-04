@@ -2,7 +2,7 @@ package com.safetynet.alerts.service.jsonfile;
 
 import com.safetynet.alerts.configuration.Constants;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.IPersonService;
+import com.safetynet.alerts.service.PersonService;
 import com.safetynet.alerts.utils.ElementsFromJsonFile;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +11,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class PersonService implements IPersonService {
+public class JsonFilePersonService implements PersonService {
 
     private final List<Person> persons;
 
-    public PersonService() {
+    public JsonFilePersonService() {
         this.persons = ElementsFromJsonFile.getJsonData(Constants.JSON_DATA_FILE_NAME).getPersons();
     }
 

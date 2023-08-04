@@ -5,8 +5,8 @@ import com.safetynet.alerts.dto.ChildAlertDto;
 import com.safetynet.alerts.dto.ChildAlertPersonDto;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import com.safetynet.alerts.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
@@ -15,24 +15,24 @@ import java.util.List;
 @Service
 public class ChildAlertEndPointService {
 
-    private final PersonService personService;
+    private final JsonFilePersonService jsonFilePersonService;
 
-    private final MedicalRecordService medicalRecordService;
+    private final JsonFileMedicalRecordService jsonFileMedicalRecordService;
 
-    public ChildAlertEndPointService(PersonService personService, MedicalRecordService medicalRecordService) {
-        this.personService = personService;
-        this.medicalRecordService = medicalRecordService;
+    public ChildAlertEndPointService(JsonFilePersonService jsonFilePersonService, JsonFileMedicalRecordService jsonFileMedicalRecordService) {
+        this.jsonFilePersonService = jsonFilePersonService;
+        this.jsonFileMedicalRecordService = jsonFileMedicalRecordService;
     }
 
     public ChildAlertDto getChildAlertByAddress(String address) {
 
         ChildAlertDto result = new ChildAlertDto();
 
-        List<Person> persons = personService.getPersonsByAddress(address);
+        List<Person> persons = jsonFilePersonService.getPersonsByAddress(address);
 
         if (persons != null) {
             for (Person person : persons) {
-                MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(person.getFirstName(), person.getLastName()).get(0);
+                MedicalRecord medicalRecord = jsonFileMedicalRecordService.getMedicalrecordsByFirstNameAndLastName(person.getFirstName(), person.getLastName()).get(0);
 
                 if (medicalRecord != null) {
                     int age = DateUtils.getAge(medicalRecord.getBirthdate());

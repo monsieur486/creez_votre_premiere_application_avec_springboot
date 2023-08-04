@@ -1,7 +1,7 @@
 package com.safetynet.alerts.domain;
 
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -11,17 +11,17 @@ import java.util.List;
 @Service
 public class CommunityEmailEndPointService {
 
-    private final PersonService personService;
+    private final JsonFilePersonService jsonFilePersonService;
 
     public CommunityEmailEndPointService(
-            PersonService personService
+            JsonFilePersonService jsonFilePersonService
     ) {
-        this.personService = personService;
+        this.jsonFilePersonService = jsonFilePersonService;
     }
 
     public List<String> getCommunityEmailByCity(String city) {
         HashSet<String> communityEmail = new HashSet<>();
-        List<Person> persons = personService.getPersonsByCity(city);
+        List<Person> persons = jsonFilePersonService.getPersonsByCity(city);
         if (persons != null) {
             for (Person person : persons) {
                 communityEmail.add(person.getEmail());

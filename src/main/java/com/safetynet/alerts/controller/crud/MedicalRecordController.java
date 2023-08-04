@@ -1,7 +1,7 @@
 package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.model.MedicalRecord;
-import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/medicalRecord")
 @Slf4j
 public class MedicalRecordController {
-    private final MedicalRecordService service;
+    private final JsonFileMedicalRecordService service;
 
-    public MedicalRecordController(MedicalRecordService service) {
+    public MedicalRecordController(JsonFileMedicalRecordService service) {
         this.service = service;
     }
 

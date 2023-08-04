@@ -2,7 +2,7 @@ package com.safetynet.alerts.service.jsonfile;
 
 import com.safetynet.alerts.configuration.Constants;
 import com.safetynet.alerts.model.MedicalRecord;
-import com.safetynet.alerts.service.IMedicalRecordService;
+import com.safetynet.alerts.service.MedicalRecordService;
 import com.safetynet.alerts.utils.ElementsFromJsonFile;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +11,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class MedicalRecordService implements IMedicalRecordService {
+public class JsonFileMedicalRecordService implements MedicalRecordService {
 
     private final List<MedicalRecord> medicalRecords;
 
-    public MedicalRecordService() {
+    public JsonFileMedicalRecordService() {
         medicalRecords = ElementsFromJsonFile.getJsonData(Constants.JSON_DATA_FILE_NAME).getMedicalrecords();
     }
 

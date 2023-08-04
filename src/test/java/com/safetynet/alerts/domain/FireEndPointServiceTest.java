@@ -3,9 +3,9 @@ package com.safetynet.alerts.domain;
 import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.FirestationService;
-import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFileFirestationService;
+import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import com.safetynet.alerts.utils.DateUtils;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +19,13 @@ import static org.mockito.Mockito.when;
 
 class FireEndPointServiceTest {
 
-    PersonService personService = mock(PersonService.class);
+    JsonFilePersonService jsonFilePersonService = mock(JsonFilePersonService.class);
 
-    FirestationService firestationService = mock(FirestationService.class);
+    JsonFileFirestationService jsonFileFirestationService = mock(JsonFileFirestationService.class);
 
-    MedicalRecordService medicalRecordService = mock(MedicalRecordService.class);
+    JsonFileMedicalRecordService jsonFileMedicalRecordService = mock(JsonFileMedicalRecordService.class);
 
-    FireEndPointService classToTest = new FireEndPointService(personService, firestationService, medicalRecordService);
+    FireEndPointService classToTest = new FireEndPointService(jsonFilePersonService, jsonFileFirestationService, jsonFileMedicalRecordService);
 
     @Test
     void getPersonListByAddress() {
@@ -42,9 +42,9 @@ class FireEndPointServiceTest {
         List<MedicalRecord> medicalRecords = new ArrayList<>();
         medicalRecords.add(medicalRecord);
 
-        when(firestationService.getFirestationsByAddress(anyString())).thenReturn(firestations);
-        when(personService.getPersonsByAddress(anyString())).thenReturn(persons);
-        when(medicalRecordService.getMedicalrecordsByFirstNameAndLastName(anyString(), anyString())).thenReturn(medicalRecords);
+        when(jsonFileFirestationService.getFirestationsByAddress(anyString())).thenReturn(firestations);
+        when(jsonFilePersonService.getPersonsByAddress(anyString())).thenReturn(persons);
+        when(jsonFileMedicalRecordService.getMedicalrecordsByFirstNameAndLastName(anyString(), anyString())).thenReturn(medicalRecords);
 
         assertNotNull(classToTest.getPersonListByAddress("1509 Culver St"));
 

@@ -2,7 +2,7 @@ package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.controller.crud.MedicalRecordController;
 import com.safetynet.alerts.model.MedicalRecord;
-import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,9 +21,9 @@ import static org.mockito.Mockito.when;
 @MockitoSettings(strictness = Strictness.LENIENT)
 class MedicalRecordControllerTest {
 
-    MedicalRecordService medicalRecordService = mock(MedicalRecordService.class);
+    JsonFileMedicalRecordService jsonFileMedicalRecordService = mock(JsonFileMedicalRecordService.class);
 
-    MedicalRecordController classToTest = new MedicalRecordController(medicalRecordService);
+    MedicalRecordController classToTest = new MedicalRecordController(jsonFileMedicalRecordService);
 
     @Test
     void findAllMedicalrecords() {
@@ -35,7 +35,7 @@ class MedicalRecordControllerTest {
                 new ArrayList<>(),
                 new ArrayList<>()));
 
-        when(medicalRecordService.getAllMedicalrecords()).thenReturn(medicalRecordList);
+        when(jsonFileMedicalRecordService.getAllMedicalrecords()).thenReturn(medicalRecordList);
         ResponseEntity<Object> response = classToTest.findAllMedicalrecords();
         assertEquals(200, response.getStatusCodeValue());
     }
@@ -49,7 +49,7 @@ class MedicalRecordControllerTest {
                 new ArrayList<>(),
                 new ArrayList<>());
 
-        when(medicalRecordService.save(medicalRecord)).thenReturn(medicalRecord);
+        when(jsonFileMedicalRecordService.save(medicalRecord)).thenReturn(medicalRecord);
         ResponseEntity<Object> medicalRecordResponseEntity = classToTest.addMedicalrecord(medicalRecord);
         assertEquals(201, medicalRecordResponseEntity.getStatusCodeValue());
     }
@@ -63,7 +63,7 @@ class MedicalRecordControllerTest {
                 new ArrayList<>(),
                 new ArrayList<>());
 
-        when(medicalRecordService.update(medicalRecord)).thenReturn(true);
+        when(jsonFileMedicalRecordService.update(medicalRecord)).thenReturn(true);
         ResponseEntity<Object> medicalRecordResponseEntity = classToTest.update(medicalRecord);
         assertEquals(201, medicalRecordResponseEntity.getStatusCodeValue());
     }
@@ -77,21 +77,21 @@ class MedicalRecordControllerTest {
                 new ArrayList<>(),
                 new ArrayList<>());
 
-        when(medicalRecordService.update(medicalRecord)).thenReturn(false);
+        when(jsonFileMedicalRecordService.update(medicalRecord)).thenReturn(false);
         ResponseEntity<Object> medicalRecordResponseEntity = classToTest.update(medicalRecord);
         assertEquals(404, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
     @Test
     void delete() {
-        when(medicalRecordService.delete("John", "Boyd")).thenReturn(true);
+        when(jsonFileMedicalRecordService.delete("John", "Boyd")).thenReturn(true);
         ResponseEntity<Object> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
         assertEquals(200, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
     @Test
     void deleteNotFound() {
-        when(medicalRecordService.delete("John", "Boyd")).thenReturn(false);
+        when(jsonFileMedicalRecordService.delete("John", "Boyd")).thenReturn(false);
         ResponseEntity<Object> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
         assertEquals(404, medicalRecordResponseEntity.getStatusCodeValue());
     }

@@ -1,7 +1,7 @@
 package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class PersonController {
 
-    private final PersonService service;
+    private final JsonFilePersonService service;
 
-    public PersonController(PersonService service) {
+    public PersonController(JsonFilePersonService service) {
         this.service = service;
     }
 

@@ -2,7 +2,7 @@ package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.domain.FirestationEndPointService;
 import com.safetynet.alerts.model.Firestation;
-import com.safetynet.alerts.service.jsonfile.FirestationService;
+import com.safetynet.alerts.service.jsonfile.JsonFileFirestationService;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/firestation")
 @Slf4j
 public class FirestationController {
-    private final FirestationService service;
+    private final JsonFileFirestationService service;
 
     private final FirestationEndPointService firestationEndPointService;
 
-    public FirestationController(FirestationService service, FirestationEndPointService firestationEndPointService) {
+    public FirestationController(JsonFileFirestationService service, FirestationEndPointService firestationEndPointService) {
         this.service = service;
         this.firestationEndPointService = firestationEndPointService;
     }

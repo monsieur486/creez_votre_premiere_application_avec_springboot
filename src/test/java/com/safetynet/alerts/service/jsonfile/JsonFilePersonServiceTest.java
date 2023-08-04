@@ -7,9 +7,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PersonServiceTest {
+class JsonFilePersonServiceTest {
 
-    PersonService classToTest = new PersonService();
+    JsonFilePersonService classToTest = new JsonFilePersonService();
 
     @Test
     void getAllPersons() {

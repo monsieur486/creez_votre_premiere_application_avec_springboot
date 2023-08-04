@@ -2,8 +2,8 @@ package com.safetynet.alerts.domain;
 
 import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.FirestationService;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFileFirestationService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,12 +17,12 @@ import static org.mockito.Mockito.when;
 
 class PhoneAlertEndPointServiceTest {
 
-    PersonService personService = mock(PersonService.class);
+    JsonFilePersonService jsonFilePersonService = mock(JsonFilePersonService.class);
 
 
-    FirestationService firestationService = mock(FirestationService.class);
+    JsonFileFirestationService jsonFileFirestationService = mock(JsonFileFirestationService.class);
 
-    PhoneAlertEndPointService phoneAlertEndPointService = new PhoneAlertEndPointService(firestationService, personService);
+    PhoneAlertEndPointService phoneAlertEndPointService = new PhoneAlertEndPointService(jsonFileFirestationService, jsonFilePersonService);
 
     @Test
     void getPhoneAlertByStationNumber() {
@@ -35,8 +35,8 @@ class PhoneAlertEndPointServiceTest {
         List<Person> persons = new ArrayList<>();
         persons.add(person);
 
-        when(firestationService.getFirestationsByStation(anyInt())).thenReturn(firestations);
-        when(personService.getPersonsByAddress(anyString())).thenReturn(persons);
+        when(jsonFileFirestationService.getFirestationsByStation(anyInt())).thenReturn(firestations);
+        when(jsonFilePersonService.getPersonsByAddress(anyString())).thenReturn(persons);
 
         List<String> result = phoneAlertEndPointService.getPhoneAlertByStationNumber(1);
         assertNotNull(result);
@@ -49,8 +49,8 @@ class PhoneAlertEndPointServiceTest {
         List<Firestation> firestations = new ArrayList<>();
         firestations.add(firestation);
 
-        when(firestationService.getFirestationsByStation(anyInt())).thenReturn(firestations);
-        when(personService.getPersonsByAddress(anyString())).thenReturn(null);
+        when(jsonFileFirestationService.getFirestationsByStation(anyInt())).thenReturn(firestations);
+        when(jsonFilePersonService.getPersonsByAddress(anyString())).thenReturn(null);
 
         List<String> result = phoneAlertEndPointService.getPhoneAlertByStationNumber(1);
         assertNotNull(result);
@@ -58,7 +58,7 @@ class PhoneAlertEndPointServiceTest {
 
     @Test
     void getPhoneAlertByStationNumberWithoutFirestation() {
-        when(firestationService.getFirestationsByStation(anyInt())).thenReturn(null);
+        when(jsonFileFirestationService.getFirestationsByStation(anyInt())).thenReturn(null);
 
         List<String> result = phoneAlertEndPointService.getPhoneAlertByStationNumber(1);
         assertNotNull(result);

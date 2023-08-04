@@ -2,8 +2,8 @@ package com.safetynet.alerts.domain;
 
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import com.safetynet.alerts.utils.DateUtils;
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +16,11 @@ import static org.mockito.Mockito.when;
 
 class ChildAlertEndPointServiceTest {
 
-    PersonService personService = mock(PersonService.class);
+    JsonFilePersonService jsonFilePersonService = mock(JsonFilePersonService.class);
 
-    MedicalRecordService medicalRecordService = mock(MedicalRecordService.class);
+    JsonFileMedicalRecordService jsonFileMedicalRecordService = mock(JsonFileMedicalRecordService.class);
 
-    ChildAlertEndPointService classToTest = new ChildAlertEndPointService(personService, medicalRecordService);
+    ChildAlertEndPointService classToTest = new ChildAlertEndPointService(jsonFilePersonService, jsonFileMedicalRecordService);
 
     @Test
     void getChildAlertByAddressWithAdult() {
@@ -30,8 +30,8 @@ class ChildAlertEndPointServiceTest {
         List<Person> personList = List.of(person);
         List<MedicalRecord> medicalRecordList = List.of(medicalRecord);
 
-        when(personService.getPersonsByAddress(anyString())).thenReturn(personList);
-        when(medicalRecordService.getMedicalrecordsByFirstNameAndLastName(anyString(), anyString())).thenReturn(medicalRecordList);
+        when(jsonFilePersonService.getPersonsByAddress(anyString())).thenReturn(personList);
+        when(jsonFileMedicalRecordService.getMedicalrecordsByFirstNameAndLastName(anyString(), anyString())).thenReturn(medicalRecordList);
         assertNotNull(classToTest.getChildAlertByAddress("1509 Culver St"));
 
     }
@@ -44,8 +44,8 @@ class ChildAlertEndPointServiceTest {
         List<Person> personList = List.of(person);
         List<MedicalRecord> medicalRecordList = List.of(medicalRecord);
 
-        when(personService.getPersonsByAddress(anyString())).thenReturn(personList);
-        when(medicalRecordService.getMedicalrecordsByFirstNameAndLastName(anyString(), anyString())).thenReturn(medicalRecordList);
+        when(jsonFilePersonService.getPersonsByAddress(anyString())).thenReturn(personList);
+        when(jsonFileMedicalRecordService.getMedicalrecordsByFirstNameAndLastName(anyString(), anyString())).thenReturn(medicalRecordList);
         assertNotNull(classToTest.getChildAlertByAddress("1509 Culver St"));
 
     }

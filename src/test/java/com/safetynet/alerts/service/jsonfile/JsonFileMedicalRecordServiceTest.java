@@ -8,9 +8,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MedicalRecordServiceTest {
+class JsonFileMedicalRecordServiceTest {
 
-    MedicalRecordService classToTest = new MedicalRecordService();
+    JsonFileMedicalRecordService classToTest = new JsonFileMedicalRecordService();
 
     @Test
     void getAllMedicalrecords() {

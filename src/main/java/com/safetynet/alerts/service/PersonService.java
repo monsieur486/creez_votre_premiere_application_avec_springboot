@@ -4,7 +4,7 @@ import com.safetynet.alerts.model.Person;
 
 import java.util.List;
 
-public interface IPersonService {
+public interface PersonService {
     List<Person> getAllPersons();
 
     Person save(Person person);

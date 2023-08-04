@@ -2,7 +2,7 @@ package com.safetynet.alerts.service.jsonfile;
 
 import com.safetynet.alerts.configuration.Constants;
 import com.safetynet.alerts.model.Firestation;
-import com.safetynet.alerts.service.IFirestationService;
+import com.safetynet.alerts.service.FirestationService;
 import com.safetynet.alerts.utils.ElementsFromJsonFile;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class FirestationService implements IFirestationService {
+public class JsonFileFirestationService implements FirestationService {
     private final List<Firestation> firestations;
 
-    public FirestationService() {
+    public JsonFileFirestationService() {
         firestations = ElementsFromJsonFile.getJsonData(Constants.JSON_DATA_FILE_NAME).getFirestations();
     }
 

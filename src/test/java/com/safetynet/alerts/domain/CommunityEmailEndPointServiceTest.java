@@ -1,7 +1,7 @@
 package com.safetynet.alerts.domain;
 
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,9 +12,9 @@ import static org.mockito.Mockito.when;
 
 class CommunityEmailEndPointServiceTest {
 
-    PersonService personService = mock(PersonService.class);
+    JsonFilePersonService jsonFilePersonService = mock(JsonFilePersonService.class);
 
-    CommunityEmailEndPointService communityEmailEndPointService = new CommunityEmailEndPointService(personService);
+    CommunityEmailEndPointService communityEmailEndPointService = new CommunityEmailEndPointService(jsonFilePersonService);
 
     @Test
     void getCommunityEmailByCity() {
@@ -23,7 +23,7 @@ class CommunityEmailEndPointServiceTest {
         List<Person> personList = List.of(person);
         String city = "Culver";
 
-        when(personService.getPersonsByCity(city)).thenReturn(personList);
+        when(jsonFilePersonService.getPersonsByCity(city)).thenReturn(personList);
 
         List<String> result = communityEmailEndPointService.getCommunityEmailByCity(city);
         assertNotNull(result);

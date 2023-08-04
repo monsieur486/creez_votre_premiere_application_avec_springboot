@@ -5,9 +5,9 @@ import com.safetynet.alerts.dto.FirePersonDto;
 import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.FirestationService;
-import com.safetynet.alerts.service.jsonfile.MedicalRecordService;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFileFirestationService;
+import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,30 +15,30 @@ import java.util.List;
 @Service
 public class FireEndPointService {
 
-    private final PersonService personService;
+    private final JsonFilePersonService jsonFilePersonService;
 
-    private final FirestationService firestationService;
+    private final JsonFileFirestationService jsonFileFirestationService;
 
-    private final MedicalRecordService medicalRecordService;
+    private final JsonFileMedicalRecordService jsonFileMedicalRecordService;
 
 
-    public FireEndPointService(PersonService personService, FirestationService firestationService, MedicalRecordService medicalRecordService) {
-        this.personService = personService;
-        this.firestationService = firestationService;
-        this.medicalRecordService = medicalRecordService;
+    public FireEndPointService(JsonFilePersonService jsonFilePersonService, JsonFileFirestationService jsonFileFirestationService, JsonFileMedicalRecordService jsonFileMedicalRecordService) {
+        this.jsonFilePersonService = jsonFilePersonService;
+        this.jsonFileFirestationService = jsonFileFirestationService;
+        this.jsonFileMedicalRecordService = jsonFileMedicalRecordService;
     }
 
     public FireDto getPersonListByAddress(String address) {
         FireDto result = new FireDto();
-        Firestation firestation = firestationService.getFirestationsByAddress(address).get(0);
+        Firestation firestation = jsonFileFirestationService.getFirestationsByAddress(address).get(0);
         if (firestation != null) {
             result.setStationNumber(firestation.getStation());
         }
 
-        List<Person> persons = personService.getPersonsByAddress(address);
+        List<Person> persons = jsonFilePersonService.getPersonsByAddress(address);
         if (persons != null) {
             for (Person person : persons) {
-                MedicalRecord medicalRecord = medicalRecordService.getMedicalrecordsByFirstNameAndLastName(
+                MedicalRecord medicalRecord = jsonFileMedicalRecordService.getMedicalrecordsByFirstNameAndLastName(
                         person.getFirstName(), person.getLastName()).get(0);
 
                 if (medicalRecord != null) {

@@ -7,9 +7,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FirestationServiceTest {
+class JsonFileFirestationServiceTest {
 
-    FirestationService classToTest = new FirestationService();
+    JsonFileFirestationService classToTest = new JsonFileFirestationService();
 
     @Test
     void getAllFirestations() {

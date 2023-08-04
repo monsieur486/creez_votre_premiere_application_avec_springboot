@@ -2,7 +2,7 @@ package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.controller.crud.PersonController;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.service.jsonfile.PersonService;
+import com.safetynet.alerts.service.jsonfile.JsonFilePersonService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 @MockitoSettings(strictness = Strictness.LENIENT)
 class PersonControllerTest {
 
-    PersonService service = mock(PersonService.class);
+    JsonFilePersonService service = mock(JsonFilePersonService.class);
 
     PersonController classToTest = new PersonController(service);
 

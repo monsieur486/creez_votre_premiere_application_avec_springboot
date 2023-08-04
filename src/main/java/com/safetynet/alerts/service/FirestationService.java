@@ -4,7 +4,7 @@ import com.safetynet.alerts.model.Firestation;
 
 import java.util.List;
 
-public interface IFirestationService {
+public interface FirestationService {
     List<Firestation> getAllFirestations();
 
     Firestation save(Firestation firestation);

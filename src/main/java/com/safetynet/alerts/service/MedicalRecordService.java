@@ -4,7 +4,7 @@ import com.safetynet.alerts.model.MedicalRecord;
 
 import java.util.List;
 
-public interface IMedicalRecordService {
+public interface MedicalRecordService {
     List<MedicalRecord> getAllMedicalrecords();
 
     MedicalRecord save(MedicalRecord medicalRecord);
