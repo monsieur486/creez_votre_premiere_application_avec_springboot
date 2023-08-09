@@ -6,10 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResponseHandlerGeneric {
-
-    private ResponseHandlerGeneric() {
-    }
+public class ResponseHandlerGeneric<T> {
 
     public static ResponseEntity<Object> generateResponse(
             String message,
