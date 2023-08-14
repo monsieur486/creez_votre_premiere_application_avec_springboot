@@ -106,7 +106,7 @@ public class JsonFilePersonService implements PersonService {
     public List<Person> getPeronsByFirstNameAndLastName(String firstName, String lastName) {
         return persons.stream()
                 .filter(person -> Objects.equals(person.getFirstName().toLowerCase(), firstName.toLowerCase())
-                        && Objects.equals(person.getLastName(), lastName.toLowerCase()))
+                        && Objects.equals(person.getLastName().toLowerCase(), lastName.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
