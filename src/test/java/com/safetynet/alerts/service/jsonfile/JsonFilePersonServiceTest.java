@@ -103,7 +103,7 @@ class JsonFilePersonServiceTest {
                 "97451",
                 "841-874-6512",
                 "jaboyd@email.com"
-                );
+        );
         boolean retour = classToTest.exists(person);
 
     }
