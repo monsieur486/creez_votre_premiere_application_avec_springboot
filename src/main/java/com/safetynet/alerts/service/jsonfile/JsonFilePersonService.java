@@ -78,7 +78,7 @@ public class JsonFilePersonService implements PersonService {
         boolean flag = false;
         for (int i = 0; i < persons.size(); i++) {
             if (Objects.equals(
-                    persons.get(i).getFirstName().toLowerCase() , firstName.toLowerCase())
+                    persons.get(i).getFirstName().toLowerCase(), firstName.toLowerCase())
                     && Objects.equals(persons.get(i).getLastName().toLowerCase(),
                     lastName.toLowerCase())) {
                 persons.remove(i);
