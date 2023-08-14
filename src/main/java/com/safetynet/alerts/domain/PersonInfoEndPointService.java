@@ -41,10 +41,11 @@ public class PersonInfoEndPointService {
      */
     public List<PersonInfoDto> getPersonInfo(String firstName, String lastName) {
         List<PersonInfoDto> personInfoDtoList = new ArrayList<>();
-
         List<Person> personList = jsonFilePersonService.getPeronsByFirstNameAndLastName(firstName, lastName);
         if (personList != null && !personList.isEmpty()) {
+            System.out.println("Find personList.size() = " + personList.size());
             for (Person person : personList) {
+                System.out.println("person = " + person);
                 PersonInfoDto personInfoDto = new PersonInfoDto();
                 personInfoDto.setFirstName(person.getFirstName());
                 personInfoDto.setLastName(person.getLastName());
