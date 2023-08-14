@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Fire end point service.
+ */
 @Service
 public class FireEndPointService {
 
@@ -22,12 +25,25 @@ public class FireEndPointService {
     private final JsonFileMedicalRecordService jsonFileMedicalRecordService;
 
 
+    /**
+     * Instantiates a new Fire end point service.
+     *
+     * @param jsonFilePersonService        the json file person service
+     * @param jsonFileFirestationService   the json file firestation service
+     * @param jsonFileMedicalRecordService the json file medical record service
+     */
     public FireEndPointService(JsonFilePersonService jsonFilePersonService, JsonFileFirestationService jsonFileFirestationService, JsonFileMedicalRecordService jsonFileMedicalRecordService) {
         this.jsonFilePersonService = jsonFilePersonService;
         this.jsonFileFirestationService = jsonFileFirestationService;
         this.jsonFileMedicalRecordService = jsonFileMedicalRecordService;
     }
 
+    /**
+     * Gets person list by address.
+     *
+     * @param address the address
+     * @return the person list by address
+     */
     public FireDto getPersonListByAddress(String address) {
         FireDto result = new FireDto();
         Firestation firestation = jsonFileFirestationService.getFirestationsByAddress(address).get(0);

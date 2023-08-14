@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Child alert controller.
+ */
 @RestController
 @RequestMapping("/childAlert")
 @Slf4j
@@ -18,10 +21,21 @@ public class ChildAlertController {
 
     private final ChildAlertEndPointService childAlertEndPointService;
 
+    /**
+     * Instantiates a new Child alert controller.
+     *
+     * @param childAlertEndPointService the child alert end point service
+     */
     public ChildAlertController(ChildAlertEndPointService childAlertEndPointService) {
         this.childAlertEndPointService = childAlertEndPointService;
     }
 
+    /**
+     * Gets end point.
+     *
+     * @param address the address
+     * @return the end point
+     */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getEndPoint(@RequestParam String address) {
 

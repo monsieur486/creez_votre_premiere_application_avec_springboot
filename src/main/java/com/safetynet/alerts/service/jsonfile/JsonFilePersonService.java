@@ -10,11 +10,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Json file person service.
+ */
 @Service
 public class JsonFilePersonService implements PersonService {
 
     private final List<Person> persons;
 
+    /**
+     * Instantiates a new Json file person service.
+     */
     public JsonFilePersonService() {
         this.persons = ElementsFromJsonFile.getJsonData(Constants.JSON_DATA_FILE_NAME).getPersons();
     }

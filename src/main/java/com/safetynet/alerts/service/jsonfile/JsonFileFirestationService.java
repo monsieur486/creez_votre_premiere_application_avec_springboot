@@ -10,10 +10,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Json file firestation service.
+ */
 @Service
 public class JsonFileFirestationService implements FirestationService {
     private final List<Firestation> firestations;
 
+    /**
+     * Instantiates a new Json file firestation service.
+     */
     public JsonFileFirestationService() {
         firestations = ElementsFromJsonFile.getJsonData(Constants.JSON_DATA_FILE_NAME).getFirestations();
     }

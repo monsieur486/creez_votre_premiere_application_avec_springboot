@@ -10,11 +10,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Json file medical record service.
+ */
 @Service
 public class JsonFileMedicalRecordService implements MedicalRecordService {
 
     private final List<MedicalRecord> medicalRecords;
 
+    /**
+     * Instantiates a new Json file medical record service.
+     */
     public JsonFileMedicalRecordService() {
         medicalRecords = ElementsFromJsonFile.getJsonData(Constants.JSON_DATA_FILE_NAME).getMedicalrecords();
     }

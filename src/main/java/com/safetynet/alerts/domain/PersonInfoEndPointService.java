@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Person info end point service.
+ */
 @Service
 public class PersonInfoEndPointService {
 
@@ -18,11 +21,24 @@ public class PersonInfoEndPointService {
 
     private final JsonFileMedicalRecordService jsonFileMedicalRecordService;
 
+    /**
+     * Instantiates a new Person info end point service.
+     *
+     * @param jsonFilePersonService        the json file person service
+     * @param jsonFileMedicalRecordService the json file medical record service
+     */
     public PersonInfoEndPointService(JsonFilePersonService jsonFilePersonService, JsonFileMedicalRecordService jsonFileMedicalRecordService) {
         this.jsonFilePersonService = jsonFilePersonService;
         this.jsonFileMedicalRecordService = jsonFileMedicalRecordService;
     }
 
+    /**
+     * Gets person info.
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @return the person info
+     */
     public List<PersonInfoDto> getPersonInfo(String firstName, String lastName) {
         List<PersonInfoDto> personInfoDtoList = new ArrayList<>();
 

@@ -8,12 +8,21 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 
+/**
+ * The type Elements from json file.
+ */
 @Slf4j
 public class ElementsFromJsonFile {
 
     private ElementsFromJsonFile() {
     }
 
+    /**
+     * Gets json data.
+     *
+     * @param fileName the file name
+     * @return the json data
+     */
     public static ApplicationElementsDto getJsonData(String fileName) {
 
 

@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * The type Fire person dto.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +23,12 @@ public class FirePersonDto {
     private List<String> medications;
     private List<String> allergies;
 
+    /**
+     * Instantiates a new Fire person dto.
+     *
+     * @param person        the person
+     * @param medicalRecord the medical record
+     */
     public FirePersonDto(Person person, MedicalRecord medicalRecord) {
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();

@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Child alert person dto.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

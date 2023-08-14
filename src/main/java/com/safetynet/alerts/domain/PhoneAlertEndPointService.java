@@ -10,6 +10,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * The type Phone alert end point service.
+ */
 @Service
 public class PhoneAlertEndPointService {
 
@@ -17,6 +20,12 @@ public class PhoneAlertEndPointService {
 
     private final JsonFileFirestationService jsonFileFirestationService;
 
+    /**
+     * Instantiates a new Phone alert end point service.
+     *
+     * @param jsonFileFirestationService the json file firestation service
+     * @param jsonFilePersonService      the json file person service
+     */
     public PhoneAlertEndPointService(
             JsonFileFirestationService jsonFileFirestationService,
             JsonFilePersonService jsonFilePersonService
@@ -25,6 +34,12 @@ public class PhoneAlertEndPointService {
         this.jsonFilePersonService = jsonFilePersonService;
     }
 
+    /**
+     * Gets phone alert by station number.
+     *
+     * @param stationNumber the station number
+     * @return the phone alert by station number
+     */
     public List<String> getPhoneAlertByStationNumber(Integer stationNumber) {
         HashSet<String> phoneAlert = new HashSet<>();
         List<Firestation> firestations = jsonFileFirestationService.getFirestationsByStation(stationNumber);
