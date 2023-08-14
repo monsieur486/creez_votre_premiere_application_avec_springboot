@@ -78,4 +78,18 @@ class JsonFileMedicalRecordServiceTest {
         List<MedicalRecord> medicalRecords = classToTest.getMedicalrecordsByFirstNameAndLastName("John", "Boyd");
         assertNotNull(medicalRecords);
     }
+
+    @Test
+    void exists() {
+        MedicalRecord medicalRecord = new MedicalRecord("John", "Boyd", "03/06/1984", null, null);
+        boolean retour = classToTest.exists(medicalRecord);
+        assertTrue(retour);
+    }
+
+    @Test
+    void notExists() {
+        MedicalRecord medicalRecord = new MedicalRecord("xxx", "xxx", "03/06/1984", null, null);
+        boolean retour = classToTest.exists(medicalRecord);
+        assertFalse(retour);
+    }
 }

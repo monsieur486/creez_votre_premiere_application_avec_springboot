@@ -92,4 +92,34 @@ class JsonFilePersonServiceTest {
         List<Person> personList = classToTest.getPeronsByFirstNameAndLastName("John", "Boyd");
         assertNotNull(personList);
     }
+
+    @Test
+    void exists() {
+        Person person = new Person(
+                "John",
+                "Boyd",
+                "1509 Culver St",
+                "Culver",
+                "97451",
+                "841-874-6512",
+                "jaboyd@email.com"
+                );
+        boolean retour = classToTest.exists(person);
+
+    }
+
+    @Test
+    void notExists() {
+        Person person = new Person(
+                "xxx",
+                "xxx",
+                "1509 Culver St",
+                "Culver",
+                "97451",
+                "841-874-6512",
+                "xxx"
+        );
+        boolean retour = classToTest.exists(person);
+        assertFalse(retour);
+    }
 }

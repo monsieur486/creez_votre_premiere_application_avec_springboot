@@ -79,4 +79,22 @@ class JsonFileFirestationServiceTest {
         List<Firestation> result = classToTest.getFirestationsByAddress("1509 Culver St");
         assertNotNull(result);
     }
+
+    @Test
+    void exists() {
+        Firestation firestation = new Firestation(
+                "908 73rd St",
+                2
+        );
+        boolean retour = classToTest.exists(firestation);
+    }
+
+    @Test
+    void notExists() {
+        Firestation firestation = new Firestation(
+                "xxx",
+                1
+        );
+        boolean retour = classToTest.exists(firestation);
+    }
 }
