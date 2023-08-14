@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * The type Person controller.
  */
@@ -34,15 +36,10 @@ public class PersonController {
      * @return the response entity
      */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> findAllPersons() {
+    public ResponseEntity<List<Person>> findAllPersons() {
         String message = "Request all persons";
         log.info(message);
-        return ResponseHandler.generateResponse(
-                message,
-                HttpStatus.OK,
-                "persons",
-                service.getAllPersons()
-        );
+        return new ResponseEntity<>(service.getAllPersons(), HttpStatus.OK);
     }
 
     /**
@@ -52,18 +49,22 @@ public class PersonController {
      * @return the response entity
      */
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> addPerson(@RequestBody Person person) {
-        String message = "Add person firstname: "
-                + person.getFirstName()
-                + " lastname: "
-                + person.getLastName();
-        log.info(message);
-        return ResponseHandler.generateResponse(
-                message,
-                HttpStatus.CREATED,
-                "person",
-                service.save(person)
-        );
+    public ResponseEntity<Person> addPerson(@RequestBody Person person) {
+        Person person1 = new Person();
+
+        if(service.exists(person)){
+            String message = "Person already exists";
+            log.warn(message);
+
+            return new ResponseEntity<>(person1, HttpStatus.BAD_REQUEST);
+        } else
+        {
+            person1 = service.save(person);
+            String message = person.getFirstName() + " " + person.getLastName() + " added succesfully";
+            log.info(message);
+            return new ResponseEntity<>(person1, HttpStatus.CREATED);
+        }
+
     }
 
     /**

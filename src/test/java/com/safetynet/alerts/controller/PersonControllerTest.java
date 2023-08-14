@@ -38,7 +38,7 @@ class PersonControllerTest {
                 "boyd@gmail.com"));
 
         when(service.getAllPersons()).thenReturn(personList);
-        ResponseEntity<Object> response = classToTest.findAllPersons();
+        ResponseEntity<List<Person>> response = classToTest.findAllPersons();
         assertEquals(200, response.getStatusCodeValue());
     }
 
@@ -54,7 +54,7 @@ class PersonControllerTest {
                 "boyd@gmail.com");
 
         when(service.save(person)).thenReturn(person);
-        ResponseEntity<Object> response = classToTest.addPerson(person);
+        ResponseEntity<Person> response = classToTest.addPerson(person);
         assertEquals(201, response.getStatusCodeValue());
     }
 
