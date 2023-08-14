@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+/**
+ * The type Medical record.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

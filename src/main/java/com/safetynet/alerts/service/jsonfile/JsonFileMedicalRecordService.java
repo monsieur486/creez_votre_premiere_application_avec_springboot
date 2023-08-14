@@ -10,11 +10,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Json file medical record service.
+ */
 @Service
 public class JsonFileMedicalRecordService implements MedicalRecordService {
 
     private final List<MedicalRecord> medicalRecords;
 
+    /**
+     * Instantiates a new Json file medical record service.
+     */
     public JsonFileMedicalRecordService() {
         medicalRecords = ElementsFromJsonFile.getJsonData(Constants.JSON_DATA_FILE_NAME).getMedicalrecords();
     }
@@ -38,25 +44,27 @@ public class JsonFileMedicalRecordService implements MedicalRecordService {
         String firstName = "";
         String lastName = "";
         boolean updateTest = false;
-        for (int i = 0; i < medicalRecords.size(); i++) {
-            if (Objects.equals(
-                    medicalRecords.get(i).getFirstName(), medicalRecord.getFirstName())
-                    && Objects.equals(medicalRecords.get(i).getLastName(),
-                    medicalRecord.getLastName())) {
-                firstName = medicalRecord.getFirstName();
-                lastName = medicalRecord.getLastName();
-                MedicalRecord medicalRecordToUpdate = new MedicalRecord();
-                medicalRecordToUpdate.setFirstName(firstName);
-                medicalRecordToUpdate.setLastName(lastName);
-                medicalRecordToUpdate.setBirthdate(medicalRecord.getBirthdate());
-                medicalRecordToUpdate.setAllergies(medicalRecord.getAllergies());
-                medicalRecordToUpdate.setMedications(medicalRecord.getMedications());
-                medicalRecords.set(i, medicalRecordToUpdate);
-                updateTest = true;
-                break;
+        if (Boolean.TRUE.equals(exists(medicalRecord))) {
+            for (int i = 0; i < medicalRecords.size(); i++) {
+                if (Objects.equals(
+                        medicalRecords.get(i).getFirstName(), medicalRecord.getFirstName())
+                        && Objects.equals(medicalRecords.get(i).getLastName(),
+                        medicalRecord.getLastName())) {
+                    firstName = medicalRecord.getFirstName();
+                    lastName = medicalRecord.getLastName();
+                    MedicalRecord medicalRecordToUpdate = new MedicalRecord(
+                            firstName,
+                            lastName,
+                            medicalRecord.getBirthdate(),
+                            medicalRecord.getMedications(),
+                            medicalRecord.getAllergies()
+                    );
+                    medicalRecords.set(i, medicalRecordToUpdate);
+                    updateTest = true;
+                    break;
+                }
             }
         }
-
         return updateTest;
     }
 
@@ -77,8 +85,15 @@ public class JsonFileMedicalRecordService implements MedicalRecordService {
     @Override
     public List<MedicalRecord> getMedicalrecordsByFirstNameAndLastName(String firstName, String lastName) {
         return medicalRecords.stream()
-                .filter(medicalRecord -> medicalRecord.getFirstName().equals(firstName)
-                        && medicalRecord.getLastName().equals(lastName))
+                .filter(medicalRecord -> medicalRecord.getFirstName().equalsIgnoreCase(firstName)
+                        && medicalRecord.getLastName().equalsIgnoreCase(lastName))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Boolean exists(MedicalRecord medicalRecord) {
+        return medicalRecords.stream()
+                .anyMatch(medicalRecord1 -> medicalRecord1.getFirstName().equalsIgnoreCase(medicalRecord.getFirstName())
+                        && medicalRecord1.getLastName().equalsIgnoreCase(medicalRecord.getLastName()));
     }
 }

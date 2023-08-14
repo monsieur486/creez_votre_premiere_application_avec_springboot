@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Firestation end point service.
+ */
 @Service
 public class FirestationEndPointService {
 
@@ -23,6 +26,13 @@ public class FirestationEndPointService {
 
     private final JsonFileMedicalRecordService jsonFileMedicalRecordService;
 
+    /**
+     * Instantiates a new Firestation end point service.
+     *
+     * @param jsonFileFirestationService   the json file firestation service
+     * @param jsonFilePersonService        the json file person service
+     * @param jsonFileMedicalRecordService the json file medical record service
+     */
     public FirestationEndPointService(
             JsonFileFirestationService jsonFileFirestationService,
             JsonFilePersonService jsonFilePersonService,
@@ -33,6 +43,12 @@ public class FirestationEndPointService {
         this.jsonFileMedicalRecordService = jsonFileMedicalRecordService;
     }
 
+    /**
+     * Gets people covered by station number.
+     *
+     * @param stationNumber the station number
+     * @return the people covered by station number
+     */
     public PeopleCoveredDto getPeopleCoveredByStationNumber(Integer stationNumber) {
         PeopleCoveredDto peopleCoveredDto = new PeopleCoveredDto();
         int adults = 0;
