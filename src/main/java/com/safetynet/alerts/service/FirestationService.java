@@ -55,4 +55,13 @@ public interface FirestationService {
      */
     List<Firestation> getFirestationsByAddress(String address);
 
+
+    /**
+     * Exists boolean.
+     *
+     * @param firestation the firestation
+     * return the boolean
+     */
+    Boolean exists(Firestation firestation);
+
 }

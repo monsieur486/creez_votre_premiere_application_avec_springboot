@@ -65,4 +65,12 @@ public interface PersonService {
      */
     List<Person> getPeronsByFirstNameAndLastName(String firstName, String lastName);
 
+    /**
+     * Exists boolean.
+     *
+     * @param person the person
+     * @return the boolean
+     */
+    Boolean exists(Person person);
+
 }

@@ -49,4 +49,13 @@ public interface MedicalRecordService {
      */
     List<MedicalRecord> getMedicalrecordsByFirstNameAndLastName(String firstName, String lastName);
 
+
+    /**
+     * Exists boolean.
+     *
+     * @param medicalRecord the medical record
+     * @return the boolean
+     */
+    Boolean exists(MedicalRecord medicalRecord);
+
 }

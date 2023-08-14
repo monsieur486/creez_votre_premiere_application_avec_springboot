@@ -110,4 +110,11 @@ public class JsonFilePersonService implements PersonService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Boolean exists(Person person) {
+        return persons.stream()
+                .anyMatch(person1 -> Objects.equals(person1.getFirstName().toLowerCase(), person.getFirstName().toLowerCase())
+                        && Objects.equals(person1.getLastName().toLowerCase(), person.getLastName().toLowerCase()));
+    }
+
 }

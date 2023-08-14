@@ -87,4 +87,11 @@ public class JsonFileMedicalRecordService implements MedicalRecordService {
                         && medicalRecord.getLastName().equalsIgnoreCase(lastName))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Boolean exists(MedicalRecord medicalRecord) {
+        return medicalRecords.stream()
+                .anyMatch(medicalRecord1 -> medicalRecord1.getFirstName().equalsIgnoreCase(medicalRecord.getFirstName())
+                        && medicalRecord1.getLastName().equalsIgnoreCase(medicalRecord.getLastName()));
+    }
 }

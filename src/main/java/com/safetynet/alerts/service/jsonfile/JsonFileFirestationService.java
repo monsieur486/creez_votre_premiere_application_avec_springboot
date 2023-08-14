@@ -87,4 +87,11 @@ public class JsonFileFirestationService implements FirestationService {
                 .filter(firestation -> Objects.equals(firestation.getAddress().toLowerCase(), address.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Boolean exists(Firestation firestation) {
+        return firestations.stream()
+                .anyMatch(firestation1 -> Objects.equals(firestation1.getAddress(), firestation.getAddress())
+                        && Objects.equals(firestation1.getStation(), firestation.getStation()));
+    }
 }
