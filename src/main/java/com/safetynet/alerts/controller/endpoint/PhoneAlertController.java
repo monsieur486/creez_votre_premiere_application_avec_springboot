@@ -1,7 +1,6 @@
 package com.safetynet.alerts.controller.endpoint;
 
 import com.safetynet.alerts.domain.PhoneAlertEndPointService;
-import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

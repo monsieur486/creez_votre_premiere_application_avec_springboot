@@ -50,13 +50,12 @@ public class PersonController {
      */
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> addPerson(@RequestBody Person person) {
-        if(Boolean.TRUE.equals(service.exists(person))){
+        if (Boolean.TRUE.equals(service.exists(person))) {
             String message = "Person already exists";
             log.warn(message);
 
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        } else
-        {
+        } else {
             Person person1 = service.save(person);
             String message = person1.getFirstName() + " " + person1.getLastName() + " added succesfully";
             log.info(message);

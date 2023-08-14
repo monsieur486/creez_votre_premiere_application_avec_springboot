@@ -44,7 +44,7 @@ public class JsonFileMedicalRecordService implements MedicalRecordService {
         String firstName = "";
         String lastName = "";
         boolean updateTest = false;
-        if(Boolean.TRUE.equals(exists(medicalRecord))) {
+        if (Boolean.TRUE.equals(exists(medicalRecord))) {
             for (int i = 0; i < medicalRecords.size(); i++) {
                 if (Objects.equals(
                         medicalRecords.get(i).getFirstName(), medicalRecord.getFirstName())

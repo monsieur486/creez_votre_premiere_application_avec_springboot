@@ -72,12 +72,11 @@ public class FirestationController {
      */
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Firestation> addFirestation(@RequestBody Firestation firestation) {
-        if(Boolean.TRUE.equals(service.exists(firestation))){
+        if (Boolean.TRUE.equals(service.exists(firestation))) {
             String message = "Firestation already exists";
             log.warn(message);
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        } else
-        {
+        } else {
             Firestation firestation1 = service.save(firestation);
             String message = firestation1.getAddress() + " with station: " + firestation1.getStation() + " added succesfully";
             log.info(message);

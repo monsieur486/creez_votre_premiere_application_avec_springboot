@@ -60,7 +60,7 @@ public interface FirestationService {
      * Exists boolean.
      *
      * @param firestation the firestation
-     * return the boolean
+     *                    return the boolean
      */
     Boolean exists(Firestation firestation);
 

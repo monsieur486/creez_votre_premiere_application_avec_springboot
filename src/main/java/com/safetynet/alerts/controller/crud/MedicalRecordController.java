@@ -2,7 +2,6 @@ package com.safetynet.alerts.controller.crud;
 
 import com.safetynet.alerts.model.MedicalRecord;
 import com.safetynet.alerts.service.jsonfile.JsonFileMedicalRecordService;
-import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -50,7 +49,7 @@ public class MedicalRecordController {
      */
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MedicalRecord> addMedicalrecord(@RequestBody MedicalRecord medicalrecord) {
-        if(Boolean.TRUE.equals(service.exists(medicalrecord))){
+        if (Boolean.TRUE.equals(service.exists(medicalrecord))) {
             String message = "Medical record already exists";
             log.warn(message);
 
@@ -100,7 +99,7 @@ public class MedicalRecordController {
      */
     @DeleteMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> delete(@RequestParam String firstName, @RequestParam String lastName) {
-        if(Boolean.TRUE.equals(service.delete(firstName, lastName))){
+        if (Boolean.TRUE.equals(service.delete(firstName, lastName))) {
             String message = "medical record from " + firstName + " " + lastName + " deleted";
             log.info(message);
 
