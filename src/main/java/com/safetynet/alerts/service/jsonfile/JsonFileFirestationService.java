@@ -37,17 +37,17 @@ public class JsonFileFirestationService implements FirestationService {
     }
 
     public Boolean update(Firestation firestation) {
-        String adress = "";
+        String address = "";
         Integer station = 0;
         boolean flag = false;
         for (int i = 0; i < firestations.size(); i++) {
             if (Objects.equals(
                     firestations.get(i).getAddress(), firestation.getAddress())
             ) {
-                adress = firestation.getAddress();
+                address = firestation.getAddress();
                 station = firestation.getStation();
                 Firestation firestationToUpdate = new Firestation();
-                firestationToUpdate.setAddress(adress);
+                firestationToUpdate.setAddress(address);
                 firestationToUpdate.setStation(station);
                 firestations.set(i, firestationToUpdate);
                 flag = true;
