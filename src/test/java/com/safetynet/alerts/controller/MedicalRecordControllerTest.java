@@ -36,7 +36,7 @@ class MedicalRecordControllerTest {
                 new ArrayList<>()));
 
         when(jsonFileMedicalRecordService.getAllMedicalrecords()).thenReturn(medicalRecordList);
-        ResponseEntity<Object> response = classToTest.findAllMedicalrecords();
+        ResponseEntity<List<MedicalRecord>> response = classToTest.findAllMedicalrecords();
         assertEquals(200, response.getStatusCodeValue());
     }
 
@@ -50,7 +50,7 @@ class MedicalRecordControllerTest {
                 new ArrayList<>());
 
         when(jsonFileMedicalRecordService.save(medicalRecord)).thenReturn(medicalRecord);
-        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.addMedicalrecord(medicalRecord);
+        ResponseEntity<MedicalRecord> medicalRecordResponseEntity = classToTest.addMedicalrecord(medicalRecord);
         assertEquals(201, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
@@ -64,7 +64,7 @@ class MedicalRecordControllerTest {
                 new ArrayList<>());
 
         when(jsonFileMedicalRecordService.update(medicalRecord)).thenReturn(true);
-        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.update(medicalRecord);
+        ResponseEntity<MedicalRecord> medicalRecordResponseEntity = classToTest.update(medicalRecord);
         assertEquals(201, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
@@ -78,21 +78,21 @@ class MedicalRecordControllerTest {
                 new ArrayList<>());
 
         when(jsonFileMedicalRecordService.update(medicalRecord)).thenReturn(false);
-        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.update(medicalRecord);
+        ResponseEntity<MedicalRecord> medicalRecordResponseEntity = classToTest.update(medicalRecord);
         assertEquals(404, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
     @Test
     void delete() {
         when(jsonFileMedicalRecordService.delete("John", "Boyd")).thenReturn(true);
-        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
+        ResponseEntity<String> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
         assertEquals(200, medicalRecordResponseEntity.getStatusCodeValue());
     }
 
     @Test
     void deleteNotFound() {
         when(jsonFileMedicalRecordService.delete("John", "Boyd")).thenReturn(false);
-        ResponseEntity<Object> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
+        ResponseEntity<String> medicalRecordResponseEntity = classToTest.delete("John", "Boyd");
         assertEquals(404, medicalRecordResponseEntity.getStatusCodeValue());
     }
 }

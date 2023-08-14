@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * The type Person info dto.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +24,12 @@ public class PersonInfoDto {
     private List<String> medications;
     private List<String> allergies;
 
+    /**
+     * Instantiates a new Person info dto.
+     *
+     * @param person        the person
+     * @param medicalRecord the medical record
+     */
     public PersonInfoDto(Person person, MedicalRecord medicalRecord) {
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();

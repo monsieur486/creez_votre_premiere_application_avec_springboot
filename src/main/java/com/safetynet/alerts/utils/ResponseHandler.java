@@ -6,11 +6,23 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type Response handler.
+ */
 public class ResponseHandler {
 
     private ResponseHandler() {
     }
 
+    /**
+     * Generate response response entity.
+     *
+     * @param message     the message
+     * @param status      the status
+     * @param objectName  the object name
+     * @param responseObj the response obj
+     * @return the response entity
+     */
     public static ResponseEntity<Object> generateResponse(
             String message,
             HttpStatus status,

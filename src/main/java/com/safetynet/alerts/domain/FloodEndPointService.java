@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Flood end point service.
+ */
 @Service
 public class FloodEndPointService {
 
@@ -22,12 +25,25 @@ public class FloodEndPointService {
 
     private final JsonFileMedicalRecordService jsonFileMedicalRecordService;
 
+    /**
+     * Instantiates a new Flood end point service.
+     *
+     * @param jsonFilePersonService        the json file person service
+     * @param jsonFileFirestationService   the json file firestation service
+     * @param jsonFileMedicalRecordService the json file medical record service
+     */
     public FloodEndPointService(JsonFilePersonService jsonFilePersonService, JsonFileFirestationService jsonFileFirestationService, JsonFileMedicalRecordService jsonFileMedicalRecordService) {
         this.jsonFilePersonService = jsonFilePersonService;
         this.jsonFileFirestationService = jsonFileFirestationService;
         this.jsonFileMedicalRecordService = jsonFileMedicalRecordService;
     }
 
+    /**
+     * Gets person list by station number list.
+     *
+     * @param stationNumbers the station numbers
+     * @return the person list by station number list
+     */
     public List<FloodDto> getPersonListByStationNumberList(String stationNumbers) {
         List<FloodDto> result = new ArrayList<>();
         for (Integer stationNumber : stationNumberList(stationNumbers)) {

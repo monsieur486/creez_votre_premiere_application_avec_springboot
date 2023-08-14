@@ -10,10 +10,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Json file firestation service.
+ */
 @Service
 public class JsonFileFirestationService implements FirestationService {
     private final List<Firestation> firestations;
 
+    /**
+     * Instantiates a new Json file firestation service.
+     */
     public JsonFileFirestationService() {
         firestations = ElementsFromJsonFile.getJsonData(Constants.JSON_DATA_FILE_NAME).getFirestations();
     }
@@ -78,7 +84,14 @@ public class JsonFileFirestationService implements FirestationService {
     @Override
     public List<Firestation> getFirestationsByAddress(String address) {
         return firestations.stream()
-                .filter(firestation -> Objects.equals(firestation.getAddress(), address))
+                .filter(firestation -> Objects.equals(firestation.getAddress().toLowerCase(), address.toLowerCase()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Boolean exists(Firestation firestation) {
+        return firestations.stream()
+                .anyMatch(firestation1 -> Objects.equals(firestation1.getAddress(), firestation.getAddress())
+                        && Objects.equals(firestation1.getStation(), firestation.getStation()));
     }
 }

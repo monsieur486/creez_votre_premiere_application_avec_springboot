@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+/**
+ * The type Application elements dto.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

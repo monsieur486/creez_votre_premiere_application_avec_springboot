@@ -10,6 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The type Firestation controller.
+ */
 @RestController
 @RequestMapping("/firestation")
 @Slf4j
@@ -18,11 +21,23 @@ public class FirestationController {
 
     private final FirestationEndPointService firestationEndPointService;
 
+    /**
+     * Instantiates a new Firestation controller.
+     *
+     * @param service                    the service
+     * @param firestationEndPointService the firestation end point service
+     */
     public FirestationController(JsonFileFirestationService service, FirestationEndPointService firestationEndPointService) {
         this.service = service;
         this.firestationEndPointService = firestationEndPointService;
     }
 
+    /**
+     * Find all firestations response entity.
+     *
+     * @param stationNumber the station number
+     * @return the response entity
+     */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> findAllFirestations(
             @RequestParam(required = false) Integer stationNumber
@@ -49,46 +64,53 @@ public class FirestationController {
         }
     }
 
+    /**
+     * Add firestation response entity.
+     *
+     * @param firestation the firestation
+     * @return the response entity
+     */
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> addFirestation(@RequestBody Firestation firestation) {
-        String message = "Add firestation adress: "
-                + firestation.getAddress()
-                + " station: "
-                + firestation.getStation();
-        log.info(message);
-        return ResponseHandler.generateResponse(
-                message,
-                HttpStatus.CREATED,
-                "firestation",
-                service.save(firestation)
-        );
-    }
-
-    @PutMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> updateProduct(@RequestBody Firestation firestation) {
-        if (Boolean.TRUE.equals(service.update(firestation))) {
-            String message = firestation.getAddress() + " with station: " + firestation.getStation() + " updated succesfully";
-            log.info(message);
-            return ResponseHandler.generateResponse(
-                    message,
-                    HttpStatus.CREATED,
-                    "firestation",
-                    firestation
-            );
-        } else {
-            String message = "Mapping adress/station not found";
+    public ResponseEntity<Firestation> addFirestation(@RequestBody Firestation firestation) {
+        if (Boolean.TRUE.equals(service.exists(firestation))) {
+            String message = "Firestation already exists";
             log.warn(message);
-            return ResponseHandler.generateResponse(
-                    message,
-                    HttpStatus.NOT_FOUND,
-                    "firestation",
-                    firestation
-            );
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        } else {
+            Firestation firestation1 = service.save(firestation);
+            String message = firestation1.getAddress() + " with station: " + firestation1.getStation() + " added succesfully";
+            log.info(message);
+            return new ResponseEntity<>(firestation1, HttpStatus.CREATED);
         }
     }
 
+    /**
+     * Update product response entity.
+     *
+     * @param firestation the firestation
+     * @return the response entity
+     */
+    @PutMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Firestation> updateProduct(@RequestBody Firestation firestation) {
+        if (Boolean.TRUE.equals(service.update(firestation))) {
+            String message = firestation.getAddress() + " with station: " + firestation.getStation() + " updated succesfully";
+            log.info(message);
+            return new ResponseEntity<>(firestation, HttpStatus.CREATED);
+        } else {
+            String message = "Mapping adress/station not found";
+            log.warn(message);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Delete fire station response entity.
+     *
+     * @param firestation the firestation
+     * @return the response entity
+     */
     @DeleteMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> deleteFireStation(@RequestBody Firestation firestation) {
+    public ResponseEntity<String> deleteFireStation(@RequestBody Firestation firestation) {
         if (Boolean.TRUE.equals(service.delete(firestation))) {
             String message = "adress: "
                     + firestation.getAddress()
@@ -96,21 +118,11 @@ public class FirestationController {
                     + firestation.getStation()
                     + " deleted";
             log.info(message);
-            return ResponseHandler.generateResponse(
-                    message,
-                    HttpStatus.OK,
-                    "firestation",
-                    null
-            );
+            return new ResponseEntity<>(message, HttpStatus.OK);
         } else {
             String message = "Mapping adress/station not found";
             log.warn(message);
-            return ResponseHandler.generateResponse(
-                    message,
-                    HttpStatus.NOT_FOUND,
-                    "firestation",
-                    null
-            );
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }
     }
 }

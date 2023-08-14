@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Child alert end point service.
+ */
 @Service
 public class ChildAlertEndPointService {
 
@@ -19,11 +22,23 @@ public class ChildAlertEndPointService {
 
     private final JsonFileMedicalRecordService jsonFileMedicalRecordService;
 
+    /**
+     * Instantiates a new Child alert end point service.
+     *
+     * @param jsonFilePersonService        the json file person service
+     * @param jsonFileMedicalRecordService the json file medical record service
+     */
     public ChildAlertEndPointService(JsonFilePersonService jsonFilePersonService, JsonFileMedicalRecordService jsonFileMedicalRecordService) {
         this.jsonFilePersonService = jsonFilePersonService;
         this.jsonFileMedicalRecordService = jsonFileMedicalRecordService;
     }
 
+    /**
+     * Gets child alert by address.
+     *
+     * @param address the address
+     * @return the child alert by address
+     */
     public ChildAlertDto getChildAlertByAddress(String address) {
 
         ChildAlertDto result = new ChildAlertDto();

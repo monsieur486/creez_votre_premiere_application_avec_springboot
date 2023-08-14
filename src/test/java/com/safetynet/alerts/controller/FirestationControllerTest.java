@@ -52,7 +52,7 @@ class FirestationControllerTest {
                 1);
 
         when(service.save(firestation)).thenReturn(firestation);
-        ResponseEntity<Object> response = classToTest.addFirestation(firestation);
+        ResponseEntity<Firestation> response = classToTest.addFirestation(firestation);
         assertEquals(201, response.getStatusCodeValue());
     }
 
@@ -63,7 +63,7 @@ class FirestationControllerTest {
                 1);
 
         when(service.update(firestation)).thenReturn(true);
-        ResponseEntity<Object> response = classToTest.updateProduct(firestation);
+        ResponseEntity<Firestation> response = classToTest.updateProduct(firestation);
         assertEquals(201, response.getStatusCodeValue());
     }
 
@@ -74,7 +74,7 @@ class FirestationControllerTest {
                 1);
 
         when(service.update(firestation)).thenReturn(false);
-        ResponseEntity<Object> response = classToTest.updateProduct(firestation);
+        ResponseEntity<Firestation> response = classToTest.updateProduct(firestation);
         assertEquals(404, response.getStatusCodeValue());
     }
 
@@ -85,7 +85,7 @@ class FirestationControllerTest {
                 1);
 
         when(service.delete(firestation)).thenReturn(true);
-        ResponseEntity<Object> response = classToTest.deleteFireStation(firestation);
+        ResponseEntity<String> response = classToTest.deleteFireStation(firestation);
         assertEquals(200, response.getStatusCodeValue());
     }
 
@@ -96,7 +96,7 @@ class FirestationControllerTest {
                 1);
 
         when(service.delete(firestation)).thenReturn(false);
-        ResponseEntity<Object> response = classToTest.deleteFireStation(firestation);
+        ResponseEntity<String> response = classToTest.deleteFireStation(firestation);
         assertEquals(404, response.getStatusCodeValue());
     }
 }
