@@ -77,8 +77,8 @@ public class JsonFileMedicalRecordService implements MedicalRecordService {
     @Override
     public List<MedicalRecord> getMedicalrecordsByFirstNameAndLastName(String firstName, String lastName) {
         return medicalRecords.stream()
-                .filter(medicalRecord -> medicalRecord.getFirstName().equals(firstName)
-                        && medicalRecord.getLastName().equals(lastName))
+                .filter(medicalRecord -> medicalRecord.getFirstName().equalsIgnoreCase(firstName)
+                        && medicalRecord.getLastName().equalsIgnoreCase(lastName))
                 .collect(Collectors.toList());
     }
 }

@@ -78,7 +78,7 @@ public class JsonFileFirestationService implements FirestationService {
     @Override
     public List<Firestation> getFirestationsByAddress(String address) {
         return firestations.stream()
-                .filter(firestation -> Objects.equals(firestation.getAddress(), address))
+                .filter(firestation -> Objects.equals(firestation.getAddress().toLowerCase(), address.toLowerCase()))
                 .collect(Collectors.toList());
     }
 }

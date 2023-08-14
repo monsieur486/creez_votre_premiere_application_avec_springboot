@@ -72,9 +72,9 @@ public class JsonFilePersonService implements PersonService {
         boolean flag = false;
         for (int i = 0; i < persons.size(); i++) {
             if (Objects.equals(
-                    persons.get(i).getFirstName(), firstName)
-                    && Objects.equals(persons.get(i).getLastName(),
-                    lastName)) {
+                    persons.get(i).getFirstName().toLowerCase() , firstName.toLowerCase())
+                    && Objects.equals(persons.get(i).getLastName().toLowerCase(),
+                    lastName.toLowerCase())) {
                 persons.remove(i);
                 flag = true;
             }
@@ -85,22 +85,22 @@ public class JsonFilePersonService implements PersonService {
     @Override
     public List<Person> getPersonsByAddress(String address) {
         return persons.stream()
-                .filter(person -> Objects.equals(person.getAddress(), address))
+                .filter(person -> Objects.equals(person.getAddress().toLowerCase(), address.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Person> getPersonsByCity(String city) {
         return persons.stream()
-                .filter(person -> Objects.equals(person.getCity(), city))
+                .filter(person -> Objects.equals(person.getCity().toLowerCase(), city.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Person> getPeronsByFirstNameAndLastName(String firstName, String lastName) {
         return persons.stream()
-                .filter(person -> Objects.equals(person.getFirstName(), firstName)
-                        && Objects.equals(person.getLastName(), lastName))
+                .filter(person -> Objects.equals(person.getFirstName().toLowerCase(), firstName.toLowerCase())
+                        && Objects.equals(person.getLastName(), lastName.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
