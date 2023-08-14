@@ -1,6 +1,7 @@
 package com.safetynet.alerts.controller.endpoint;
 
 import com.safetynet.alerts.domain.FireEndPointService;
+import com.safetynet.alerts.dto.FireDto;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -37,13 +38,8 @@ public class FireController {
      * @return the end point
      */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getEndPoint(@RequestParam String address) {
+    public ResponseEntity<FireDto> getEndPoint(@RequestParam String address) {
 
-        return ResponseHandler.generateResponse(
-                "Get person list by address",
-                HttpStatus.OK,
-                "fire",
-                fireEndPointService.getPersonListByAddress(address)
-        );
+        return new ResponseEntity<>(fireEndPointService.getPersonListByAddress(address), HttpStatus.OK);
     }
 }

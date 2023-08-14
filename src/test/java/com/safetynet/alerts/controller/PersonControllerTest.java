@@ -70,7 +70,7 @@ class PersonControllerTest {
                 "boyd@gmail.com");
 
         when(service.update(person)).thenReturn(true);
-        ResponseEntity<Object> response = classToTest.updatePerson(person);
+        ResponseEntity<Person> response = classToTest.updatePerson(person);
         assertEquals(201, response.getStatusCodeValue());
     }
 
@@ -86,21 +86,21 @@ class PersonControllerTest {
                 "boyd@gmail.com");
 
         when(service.update(person)).thenReturn(false);
-        ResponseEntity<Object> response = classToTest.updatePerson(person);
+        ResponseEntity<Person> response = classToTest.updatePerson(person);
         assertEquals(404, response.getStatusCodeValue());
     }
 
     @Test
     void deletePerson() {
         when(service.delete("xxx", "xxx")).thenReturn(true);
-        ResponseEntity<Object> response = classToTest.deletePerson("xxx", "xxx");
+        ResponseEntity<String> response = classToTest.deletePerson("xxx", "xxx");
         assertEquals(200, response.getStatusCodeValue());
     }
 
     @Test
     void deletePersonNotFound() {
         when(service.delete("xxx", "xxx")).thenReturn(false);
-        ResponseEntity<Object> response = classToTest.deletePerson("xxx", "xxx");
+        ResponseEntity<String> response = classToTest.deletePerson("xxx", "xxx");
         assertEquals(404, response.getStatusCodeValue());
     }
 }

@@ -1,6 +1,7 @@
 package com.safetynet.alerts.controller.endpoint;
 
 import com.safetynet.alerts.domain.ChildAlertEndPointService;
+import com.safetynet.alerts.dto.ChildAlertDto;
 import com.safetynet.alerts.utils.ResponseHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -37,13 +38,8 @@ public class ChildAlertController {
      * @return the end point
      */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getEndPoint(@RequestParam String address) {
+    public ResponseEntity<ChildAlertDto> getEndPoint(@RequestParam String address) {
 
-        return ResponseHandler.generateResponse(
-                "List of children and adults living at the given address",
-                HttpStatus.OK,
-                "childAlert",
-                childAlertEndPointService.getChildAlertByAddress(address)
-        );
+        return new ResponseEntity<>(childAlertEndPointService.getChildAlertByAddress(address), HttpStatus.OK);
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * The type Community email controller.
  */
@@ -37,13 +39,8 @@ public class CommunityEmailController {
      * @return the end point
      */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getEndPoint(@RequestParam String city) {
+    public ResponseEntity<List<String>> getEndPoint(@RequestParam String city) {
 
-        return ResponseHandler.generateResponse(
-                "communityEmails",
-                HttpStatus.OK,
-                "emailsList",
-                communityEmailEndPointService.getCommunityEmailByCity(city)
-        );
+        return new ResponseEntity<>(communityEmailEndPointService.getCommunityEmailByCity(city), HttpStatus.OK);
     }
 }

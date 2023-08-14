@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * The type Phone alert controller.
  */
@@ -37,11 +39,7 @@ public class PhoneAlertController {
      * @return the end point
      */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getEndPoint(@RequestParam Integer firestation) {
-
-        return ResponseHandler.generateResponse("Phone numbers for firestation " + firestation,
-                HttpStatus.OK,
-                "phoneNumbers",
-                phoneAlertEndPointService.getPhoneAlertByStationNumber(firestation));
+    public ResponseEntity<List<String>> getEndPoint(@RequestParam Integer firestation) {
+        return new ResponseEntity<>(phoneAlertEndPointService.getPhoneAlertByStationNumber(firestation), HttpStatus.OK);
     }
 }
